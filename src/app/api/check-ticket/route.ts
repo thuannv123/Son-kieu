@@ -58,7 +58,7 @@ export async function GET(req: NextRequest) {
   const tickets = Array.from(groups.values()).map(arr => {
     const first = arr[0];
     const act   = (b: typeof first) =>
-      (b.activities as { name: string; category: string } | null);
+      (Array.isArray(b.activities) ? b.activities[0] : b.activities) as { name: string; category: string } | null;
 
     return {
       bookingRef:  first.booking_ref,

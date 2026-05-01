@@ -65,7 +65,7 @@ export async function GET(req: NextRequest) {
 
   /* Per-activity price: row 0 has dish_total inflated into total_price */
   const activities = data.map(b => {
-    const act = b.activities as { name: string; category: string } | null;
+    const act = (Array.isArray(b.activities) ? b.activities[0] : b.activities) as { name: string; category: string } | null;
     return {
       id:       b.id as string,
       name:     act?.name     ?? "—",

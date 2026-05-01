@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
         total_price: rows.reduce((s, b) => s + Number(b.total_price), 0),
         activities_all: rows
           .map(b => {
-            const act = b.activities as { name: string; category: string } | null;
+            const act = (Array.isArray(b.activities) ? b.activities[0] : b.activities) as { name: string; category: string } | null;
             if (!act) return null;
             return { ...act, price: Number(b.total_price) - Number(b.dish_total ?? 0) };
           })
