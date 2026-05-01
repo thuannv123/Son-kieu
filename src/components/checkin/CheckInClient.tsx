@@ -40,7 +40,7 @@ export default function CheckInClient() {
 
   useEffect(() => {
     if (!scanning || !scannerRef.current) return;
-    let scanner: { stop: () => Promise<void> };
+    let scanner: { start: (c: object, cfg: object, ok: (t: string) => void, err: () => void) => Promise<void>; stop: () => Promise<void> };
     import("html5-qrcode").then(({ Html5Qrcode }) => {
       scanner = new Html5Qrcode("qr-reader");
       html5QrRef.current = scanner;
