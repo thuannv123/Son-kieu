@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum ActivityCategory {
+  CAVE
+  LAKE
+  SIGHTSEEING
+}
+
+enum BookingStatus {
+  PENDING
+  PAID
+  CANCELLED
+  CHECKED_IN
+}
+
+// ─── Models ───────────────────────────────────────────────────────────────────
+
+model User {
+  id        String    @id @default(uuid()) @db.Uuid
+  name      String
+  email     String    @unique
+  phone     String?
+  createdAt DateTime  @default(now())
+  bookings  Booking[]
+
+  @@map("users")
+}
+
+model Activity {
+  id              String           @id @default(uuid()) @db.Uuid
+  name            String
+  category        ActivityCategory
+  description     String?          @db.Text
+  safetyGuideline String?          @db.Text
+  difficultyLevel String?          // only relevant for CAVE
+  virtualTourUrl  String?          // 360 embed URL
+  maxCapacity     Int
+  maxPerSlot      Int              @default(10) // cave: max pax per hour slot
+  price           Decimal          @db.Decimal(10, 2)
+  isActive        Boolean          @default(true)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  bookings        Booking[]
+  slots           ActivitySlot[]
+
+  @@map("activities")
+}
+
+// Represents a bookable time slot for an activity on a given date
+model ActivitySlot {
+  id           String   @id @default(uuid()) @db.Uuid
+  activityId   String   @db.Uuid
+  slotDate     DateTime @db.Date
+  slotTime     DateTime @db.Time
+  bookedCount  Int      @default(0)
+  activity     Activity @relation(fields: [activityId], references: [id])
+  bookings     Booking[]
+
+  @@unique([activityId, slotDate, slotTime])
+  @@map("activity_slots")
+}
+
+model Booking {
+  id           String        @id @default(uuid()) @db.Uuid
+  userId       String        @db.Uuid
+  activityId   String        @db.Uuid
+  slotId       String        @db.Uuid
+  bookingDate  DateTime      @db.Date
+  slotTime     DateTime      @db.Time
+  guestCount   Int           @default(1)
+  totalPrice   Decimal       @db.Decimal(10, 2)
+  status       BookingStatus @default(PENDING)
+  qrCodeUrl    String?
+  qrCodeToken  String?       @unique // UUID used for gate check-in
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  user         User          @relation(fields: [userId], references: [id])
+  activity     Activity      @relation(fields: [activityId], references: [id])
+  slot         ActivitySlot  @relation(fields: [slotId], references: [id])
+
+  @@map("bookings")
+}
+
+// Cached weather snapshot — refreshed by a cron job
+model WeatherLog {
+  id          BigInt   @id @default(autoincrement())
+  location    String   @default("resort") // support multiple locations later
+  status      String   // e.g. "Rain", "Clear", "Thunderstorm"
+  description String?
+  temperature Float?
+  isSafe      Boolean  // false when Rain / Thunderstorm / Drizzle
+  updatedAt   DateTime @updatedAt @default(now())
+
+  @@map("weather_logs")
+}

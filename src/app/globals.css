@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-white text-gray-900;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-emerald-500 rounded-sm;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #86efac #f3f4f6;
+  }
+  .scrollbar-thin::-webkit-scrollbar       { width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: #f3f4f6; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #86efac; border-radius: 3px; }
+
+  /* Gradient text helper */
+  .gradient-text {
+    @apply bg-gradient-to-r from-emerald-300 via-emerald-200 to-emerald-400 bg-clip-text text-transparent;
+  }
+
+  /* Glass card */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  /* Section label */
+  .label {
+    @apply text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-600;
+  }
+}
