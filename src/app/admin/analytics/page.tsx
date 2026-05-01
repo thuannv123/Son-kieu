@@ -103,7 +103,7 @@ export default async function AnalyticsPage({ searchParams }: PageProps) {
   const catCount:   Record<string, number> = { CAVE: 0, LAKE: 0, SIGHTSEEING: 0 };
   const catRevenue: Record<string, number> = { CAVE: 0, LAKE: 0, SIGHTSEEING: 0 };
   bookings.forEach(b => {
-    const cat = (Array.isArray(b.activities) ? b.activities[0] : b.activities as { category: string } | null)?.category;
+    const cat = (b.activities as unknown as { category: string } | null)?.category;
     if (cat && cat in catCount) {
       catCount[cat]++;
       catRevenue[cat] += Number(b.total_price) - Number(b.dish_total ?? 0);

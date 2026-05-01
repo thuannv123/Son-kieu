@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
         guests:     fullBooking.guest_count,
         bookingRef: fullBooking.booking_ref,
         bookings: [{
-          activity: (Array.isArray(fullBooking.activities) ? fullBooking.activities[0] : fullBooking.activities as { name: string } | null)?.name ?? "—",
+          activity: (fullBooking.activities as unknown as { name: string } | null)?.name ?? "—",
           date:     fullBooking.booking_date,
           time:     fullBooking.slot_time?.slice(0, 5) ?? "—",
           price:    Number(fullBooking.total_price),

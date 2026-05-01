@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
           guests:     first.guest_count,
           bookingRef: first.booking_ref ?? "",
           bookings:   updated.map(b => ({
-            activity: (b.activities as { name: string } | null)?.name ?? "—",
+            activity: (b.activities as unknown as { name: string } | null)?.name ?? "—",
             date:     b.booking_date,
             time:     b.slot_time?.slice(0, 5) ?? "—",
             price:    Number(b.total_price),
