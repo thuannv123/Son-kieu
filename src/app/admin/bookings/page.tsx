@@ -15,8 +15,14 @@ type RawBooking = {
   guest_count: number; booking_date: string; slot_time: string;
   total_price: number; status: string; created_at: string;
   qr_code_token: string | null; booking_ref: string | null;
-  activities: { name: string; category: string } | null;
+  activities: { name: string; category: string }[] | { name: string; category: string } | null;
 };
+
+function getActivity(raw: RawBooking["activities"]): { name: string; category: string } | null {
+  if (!raw) return null;
+  if (Array.isArray(raw)) return raw[0] ?? null;
+  return raw;
+}
 
 
 function groupByRef(bookings: RawBooking[]): OrderGroup[] {
@@ -41,7 +47,7 @@ function groupByRef(bookings: RawBooking[]): OrderGroup[] {
         count: first.guest_count,
       },
       activities: arr
-        .map(b => (b.activities as { name: string } | null)?.name)
+        .map(b => getActivity(b.activities)?.name)
         .filter(Boolean) as string[],
       date:      first.booking_date,
       time:      first.slot_time,
@@ -62,7 +68,7 @@ export default async function BookingsPage({ searchParams }: PageProps) {
     .limit(500);
 
   const filtered = ((bookings ?? []) as RawBooking[]).filter((b) => {
-    const act  = b.activities as { name: string; category: string } | null;
+    const act  = getActivity(b.activities);
     const matchQ   = !sp.q || [b.guest_name, b.guest_phone, b.guest_email]
                        .some(f => f?.toLowerCase().includes(sp.q!.toLowerCase()));
     const matchSt  = !sp.status   || b.status     === sp.status;
