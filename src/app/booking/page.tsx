@@ -7,8 +7,9 @@ import type { Activity } from "@/types";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title:       "Đặt Vé",
-  description: "Đặt vé tham quan hang động, tắm hồ thiên nhiên và khám phá rừng nguyên sinh tại Sơn Kiều. Xác nhận tức thì, nhận QR code ngay.",
+  title:       "Đặt Vé Khu Du Lịch Sơn Kiều | Vé Tham Quan Quảng Trị",
+  description: "Đặt vé tham quan Khu Du Lịch Sinh Thái Sơn Kiều tại Trường Sơn, Quảng Trị. Chọn hoạt động hang động, hồ suối, ẩm thực và nhận mã QR xác nhận nhanh.",
+  keywords:    ["đặt vé Sơn Kiều", "vé khu du lịch Sơn Kiều", "vé tham quan Quảng Trị", "đặt vé du lịch Quảng Trị"],
   alternates:  { canonical: "/booking" },
 };
 

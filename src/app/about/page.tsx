@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Về Sơn Kiều",
-  description: "Khám phá câu chuyện, sứ mệnh và đội ngũ đằng sau Khu Du Lịch Sinh Thái Sơn Kiều tại Trường Sơn, Quảng Trị — nơi kết nối con người với thiên nhiên hoang sơ.",
+  title: "Về Khu Du Lịch Sinh Thái Sơn Kiều",
+  description: "Tìm hiểu Khu Du Lịch Sinh Thái Sơn Kiều tại Trường Sơn, Quảng Trị: câu chuyện hình thành, thiên nhiên hoang sơ, văn hóa bản địa và định hướng du lịch bền vững.",
+  keywords: ["về Sơn Kiều", "Khu Du Lịch Sinh Thái Sơn Kiều", "du lịch sinh thái Quảng Trị", "Trường Sơn Quảng Trị"],
   alternates: { canonical: "/about" },
 };
 

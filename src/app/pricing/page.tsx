@@ -7,9 +7,10 @@ import { ACTIVITIES, CATEGORY_META } from "@/lib/mock-data";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Bảng Giá Vé",
+  title: "Bảng Giá Vé Sơn Kiều | Giá Tham Quan Khu Du Lịch",
   description:
-    "Bảng giá vé tham quan, hoạt động tại Khu Du Lịch Sinh Thái Sơn Kiều, Trường Sơn, Quảng Trị. Giá tốt nhất, xác nhận tức thì.",
+    "Cập nhật bảng giá vé Khu Du Lịch Sinh Thái Sơn Kiều tại Trường Sơn, Quảng Trị: vé tham quan hang động, hồ suối, combo hoạt động và dịch vụ đi kèm.",
+  keywords: ["giá vé Sơn Kiều", "bảng giá khu du lịch Sơn Kiều", "vé tham quan Sơn Kiều", "giá vé du lịch Quảng Trị"],
   alternates: { canonical: "/pricing" },
 };
 

@@ -6,8 +6,9 @@ import Image from "next/image";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title:       "Blog & Cẩm Nang Du Lịch",
-  description: "Tin tức, cẩm nang du lịch và hướng dẫn khám phá hang động, hồ bơi thiên nhiên tại Khu Du Lịch Sinh Thái Sơn Kiều.",
+  title:       "Cẩm Nang Du Lịch Quảng Trị | Kinh Nghiệm Đi Sơn Kiều",
+  description: "Cẩm nang du lịch Quảng Trị và kinh nghiệm đi Khu Du Lịch Sinh Thái Sơn Kiều: đường đi, lịch trình, hoạt động, ăn uống và mẹo tham quan.",
+  keywords:    ["cẩm nang du lịch Quảng Trị", "kinh nghiệm đi Sơn Kiều", "du lịch Sơn Kiều", "địa điểm du lịch Quảng Trị"],
   alternates:  { canonical: "/blog" },
 };
 

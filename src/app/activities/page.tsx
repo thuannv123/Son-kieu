@@ -8,8 +8,9 @@ import Link from "next/link";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title:       "Hoạt Động",
-  description: "Khám phá tất cả hoạt động tại Sơn Kiều: hang động triệu năm, hồ bơi thiên nhiên, tham quan rừng nguyên sinh, ẩm thực đặc sản.",
+  title:       "Hoạt Động Du Lịch Sơn Kiều | Hang Động, Hồ Suối, Tham Quan",
+  description: "Khám phá các hoạt động tại Khu Du Lịch Sinh Thái Sơn Kiều, Quảng Trị: tham quan hang động, tắm hồ suối tự nhiên, xe điện, check-in và ẩm thực bản địa.",
+  keywords:    ["hoạt động Sơn Kiều", "hang động Quảng Trị", "hồ suối tự nhiên Quảng Trị", "khu du lịch sinh thái Sơn Kiều"],
   alternates:  { canonical: "/activities" },
 };
 

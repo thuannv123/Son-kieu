@@ -20,17 +20,17 @@ export const metadata: Metadata = {
   applicationName: "Sơn Kiều",
 
   title: {
-    default:  "Khu Du Lịch Sinh Thái Sơn Kiều",
+    default:  "Khu Du Lịch Sinh Thái Sơn Kiều | Du Lịch Quảng Trị",
     template: "%s | Sơn Kiều",
   },
   description:
-    "Khu Du Lịch Sinh Thái & Homestay Sơn Kiều tại Trường Sơn, Quảng Ninh, tỉnh Quảng Trị — nơi nghỉ dưỡng yên bình giữa thiên nhiên hoang sơ. Đặt vé trực tuyến — xác nhận tức thì.",
+    "Khu Du Lịch Sinh Thái Sơn Kiều tại Trường Sơn, Quảng Trị: hang động, hồ suối tự nhiên, ẩm thực bản địa và trải nghiệm du lịch sinh thái cho gia đình, nhóm bạn.",
 
   openGraph: {
     type:        "website",
     siteName:    "Khu Du Lịch Sinh Thái Sơn Kiều",
-    title:       "Khu Du Lịch Sinh Thái Sơn Kiều",
-    description: "Homestay & khu du lịch sinh thái tại Trường Sơn, Quảng Ninh, tỉnh Quảng Trị — nơi nghỉ dưỡng yên bình giữa hang động, hồ bơi thiên nhiên và rừng nguyên sinh.",
+    title:       "Khu Du Lịch Sinh Thái Sơn Kiều | Du Lịch Quảng Trị",
+    description: "Khám phá khu du lịch sinh thái Sơn Kiều tại Trường Sơn, Quảng Trị với hang động, hồ suối tự nhiên, ẩm thực bản địa và hoạt động ngoài trời.",
     locale:      "vi_VN",
     url:         SITE,
     images: [{ url: SOCIAL_IMAGE, width: 1200, height: 630, alt: "Khu Du Lịch Sinh Thái Sơn Kiều" }],
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
 
   twitter: {
     card:        "summary_large_image",
-    title:       "Khu Du Lịch Sinh Thái Sơn Kiều",
-    description: "Trải nghiệm thiên nhiên hoang sơ — hang động, hồ bơi thiên nhiên, rừng nguyên sinh.",
+    title:       "Khu Du Lịch Sinh Thái Sơn Kiều | Du Lịch Quảng Trị",
+    description: "Trải nghiệm du lịch sinh thái tại Sơn Kiều: hang động, hồ suối tự nhiên, ẩm thực bản địa và thiên nhiên Trường Sơn.",
     images:      [SOCIAL_IMAGE],
   },
 
@@ -62,6 +62,8 @@ export const metadata: Metadata = {
     "hồ suối tự nhiên",
     "du lịch sinh thái",
     "homestay Quảng Trị",
+    "địa điểm du lịch Quảng Trị",
+    "khu du lịch Trường Sơn",
   ],
 
   verification: {

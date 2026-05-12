@@ -1,7 +1,16 @@
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import EventsClient from "./EventsClient";
+import type { Metadata } from "next";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Sự Kiện Tại Sơn Kiều | Hoạt Động Du Lịch Quảng Trị",
+  description:
+    "Cập nhật sự kiện, chương trình trải nghiệm và hoạt động đặc biệt tại Khu Du Lịch Sinh Thái Sơn Kiều, Trường Sơn, Quảng Trị.",
+  keywords: ["sự kiện Sơn Kiều", "hoạt động du lịch Quảng Trị", "lễ hội Quảng Trị", "Khu Du Lịch Sơn Kiều"],
+  alternates: { canonical: "/events" },
+};
 
 export default async function EventsPage() {
   const { data } = await supabaseAdmin

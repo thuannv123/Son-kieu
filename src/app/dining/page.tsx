@@ -7,8 +7,9 @@ import DishTabs from "@/components/dining/DishTabs";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title:       "Ẩm Thực",
-  description: "Thực đơn ẩm thực bản địa tại Khu Du Lịch Sinh Thái Sơn Kiều — combo nướng than hoa, đặc sản rừng và món lẻ phong phú.",
+  title:       "Ẩm Thực Sơn Kiều | Đặc Sản Rừng Núi Quảng Trị",
+  description: "Thưởng thức ẩm thực bản địa tại Khu Du Lịch Sinh Thái Sơn Kiều: combo nướng than hoa, đặc sản rừng, món gia đình và thực đơn dành cho khách tham quan.",
+  keywords:    ["ẩm thực Sơn Kiều", "đặc sản Quảng Trị", "đặc sản rừng", "nhà hàng khu du lịch Sơn Kiều"],
   alternates:  { canonical: "/dining" },
 };
 

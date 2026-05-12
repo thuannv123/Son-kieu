@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Hướng Dẫn Đường Đến",
+  title: "Đường Đến Khu Du Lịch Sơn Kiều | Trường Sơn, Quảng Trị",
   description:
-    "Hướng dẫn chi tiết đường đến Khu Du Lịch Sinh Thái Sơn Kiều, Trường Sơn, Quảng Trị từ Đà Nẵng, Huế, Đồng Hới. Sơ đồ đường đi và các phương tiện di chuyển.",
+    "Hướng dẫn đường đến Khu Du Lịch Sinh Thái Sơn Kiều ở Trường Sơn, Quảng Trị từ Đông Hà, Đồng Hới, Huế và Đà Nẵng. Xem lộ trình, mốc đường và phương tiện phù hợp.",
+  keywords: ["đường đến Sơn Kiều", "Khu Du Lịch Sơn Kiều ở đâu", "du lịch Trường Sơn Quảng Trị", "đường đi Sơn Kiều"],
   alternates: { canonical: "/directions" },
 };
 
