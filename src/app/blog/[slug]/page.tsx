@@ -3,6 +3,7 @@ import { supabaseAdmin } from "@/lib/supabase-admin";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import MarkdownContent from "@/components/ui/MarkdownContent";
 
 export const revalidate = 60;
 
@@ -21,70 +22,6 @@ const CAT_GRADIENT: Record<string, string> = {
   food:  "from-orange-700 to-orange-950",
   event: "from-rose-700 to-rose-950",
 };
-
-function bold(text: string) {
-  const parts = text.split(/\*\*(.+?)\*\*/g);
-  return parts.map((p, i) => i % 2 === 1 ? <strong key={i}>{p}</strong> : p);
-}
-
-function renderContent(content: string) {
-  return content
-    .split(/\n\n+/)
-    .map((block, i) => {
-      if (block.startsWith("# "))
-        return <h2 key={i} className="mt-10 mb-4 text-2xl font-black text-gray-900 leading-tight">{block.slice(2)}</h2>;
-      if (block.startsWith("## "))
-        return <h3 key={i} className="mt-8 mb-3 text-xl font-bold text-gray-900">{block.slice(3)}</h3>;
-      if (block.startsWith("### "))
-        return <h4 key={i} className="mt-6 mb-2 text-lg font-bold text-gray-800">{block.slice(4)}</h4>;
-      if (block.startsWith("- ") || block.startsWith("* ")) {
-        const items = block.split("\n").filter(l => l.startsWith("- ") || l.startsWith("* "));
-        return (
-          <ul key={i} className="my-4 space-y-2 pl-1">
-            {items.map((item, j) => (
-              <li key={j} className="flex items-start gap-2.5 text-[15px] leading-relaxed text-gray-700">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
-                {bold(item.slice(2))}
-              </li>
-            ))}
-          </ul>
-        );
-      }
-      if (block.startsWith("|")) {
-        const rows = block.split("\n").filter(l => l.startsWith("|"));
-        const header = rows[0]?.split("|").filter(Boolean).map(c => c.trim());
-        const body   = rows.slice(2);
-        return (
-          <div key={i} className="my-6 overflow-x-auto rounded-2xl ring-1 ring-gray-200">
-            <table className="w-full text-[14px]">
-              <thead className="bg-gray-50">
-                <tr>
-                  {header?.map((h, j) => (
-                    <th key={j} className="px-4 py-3 text-left text-[12px] font-bold uppercase tracking-wide text-gray-500">
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {body.map((row, j) => {
-                  const cells = row.split("|").filter(Boolean).map(c => c.trim());
-                  return (
-                    <tr key={j} className={j % 2 === 0 ? "bg-white" : "bg-gray-50/60"}>
-                      {cells.map((cell, k) => (
-                        <td key={k} className="px-4 py-3 text-gray-700">{bold(cell)}</td>
-                      ))}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        );
-      }
-      return <p key={i} className="my-4 text-[15px] leading-[1.85] text-gray-700">{bold(block)}</p>;
-    });
-}
 
 export async function generateMetadata({
   params,
@@ -243,7 +180,7 @@ export default async function BlogPostPage({
         <article className="rounded-3xl bg-white px-7 py-8 shadow-[0_2px_20px_rgba(0,0,0,0.06)]
                             ring-1 ring-black/[0.04] sm:px-10 sm:py-10">
           {post.content
-            ? renderContent(post.content)
+            ? <MarkdownContent content={post.content} className="leading-[1.85]" />
             : <p className="text-[15px] text-gray-400">Bài viết chưa có nội dung.</p>
           }
         </article>
