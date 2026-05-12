@@ -26,6 +26,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
   for (const key of allowed) {
     if (body[key] !== undefined) update[key] = body[key];
   }
+  update.event_date = body.event_date ? new Date(body.event_date).toISOString() : null;
   if (body.is_published === true && !body.published_at) update.published_at = new Date().toISOString();
   else if (body.is_published === false) update.published_at = null;
 
