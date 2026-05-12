@@ -103,7 +103,7 @@ export async function generateMetadata({
 
   const description = post.excerpt?.slice(0, 155) ?? post.title;
   const url         = `${SITE}/blog/${slug}`;
-  const image       = post.cover_image ? [{ url: post.cover_image }] : [{ url: "/og.jpg" }];
+  const image       = post.cover_image ? [{ url: post.cover_image }] : [{ url: "/opengraph-image" }];
 
   return {
     title:       post.title,
@@ -151,9 +151,14 @@ export default async function BlogPostPage({
     "headline": post.title, "description": post.excerpt ?? "", "url": pageUrl,
     "datePublished": post.published_at, "dateModified": post.updated_at ?? post.published_at,
     "author": { "@type": "Person", "name": post.author },
-    "publisher": { "@type": "Organization", "name": "Khu Du Lịch Sinh Thái Sơn Kiều", "url": SITE },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Khu Du Lịch Sinh Thái Sơn Kiều",
+      "url": SITE,
+      "logo": { "@type": "ImageObject", "url": `${SITE}/icon.png` },
+    },
     "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
-    ...(post.cover_image  ? { "image":    post.cover_image  } : {}),
+    "image": post.cover_image ?? `${SITE}/opengraph-image`,
     ...(post.seo_keywords ? { "keywords": post.seo_keywords } : {}),
   };
 

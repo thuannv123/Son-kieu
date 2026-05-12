@@ -63,6 +63,7 @@ const WEATHER_URL =
 const WMO_DAYS = ["CN","T2","T3","T4","T5","T6","T7"] as const;
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn";
+const SOCIAL_IMAGE = `${SITE}/opengraph-image`;
 
 const homeJsonLd = {
   "@context": "https://schema.org",
@@ -73,7 +74,7 @@ const homeJsonLd = {
       "name":        "Khu Du Lịch Sinh Thái Sơn Kiều",
       "description": "Khu du lịch sinh thái & homestay tại Trường Sơn, Quảng Ninh, tỉnh Quảng Trị — hang động triệu năm tuổi, hồ bơi thiên nhiên ngọc bích, rừng nguyên sinh.",
       "url":         SITE,
-      "image":       `${SITE}/og.jpg`,
+      "image":       SOCIAL_IMAGE,
       "telephone":   "+84944911896",
       "address": {
         "@type":           "PostalAddress",
@@ -93,7 +94,7 @@ const homeJsonLd = {
       "@id":       `${SITE}/#organization`,
       "name":      "Khu Du Lịch Sinh Thái Sơn Kiều",
       "url":       SITE,
-      "logo":      `${SITE}/og.jpg`,
+      "logo":      `${SITE}/icon.png`,
       "telephone": "+84944911896",
       "address": {
         "@type":           "PostalAddress",

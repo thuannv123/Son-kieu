@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -13,9 +13,11 @@ const montserrat = Montserrat({
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn";
 const GTM_ID = "GTM-5NHCB3KW";
 const GA_ID = "G-E0563FK9L6";
+const SOCIAL_IMAGE = "/opengraph-image";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
+  applicationName: "Sơn Kiều",
 
   title: {
     default:  "Khu Du Lịch Sinh Thái Sơn Kiều",
@@ -31,17 +33,36 @@ export const metadata: Metadata = {
     description: "Homestay & khu du lịch sinh thái tại Trường Sơn, Quảng Ninh, tỉnh Quảng Trị — nơi nghỉ dưỡng yên bình giữa hang động, hồ bơi thiên nhiên và rừng nguyên sinh.",
     locale:      "vi_VN",
     url:         SITE,
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Khu Du Lịch Sinh Thái Sơn Kiều" }],
+    images: [{ url: SOCIAL_IMAGE, width: 1200, height: 630, alt: "Khu Du Lịch Sinh Thái Sơn Kiều" }],
   },
 
   twitter: {
     card:        "summary_large_image",
     title:       "Khu Du Lịch Sinh Thái Sơn Kiều",
     description: "Trải nghiệm thiên nhiên hoang sơ — hang động, hồ bơi thiên nhiên, rừng nguyên sinh.",
-    images:      ["/og.jpg"],
+    images:      [SOCIAL_IMAGE],
   },
 
   alternates: { canonical: SITE },
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
+  authors: [{ name: "Khu Du Lịch Sinh Thái Sơn Kiều", url: SITE }],
+  creator: "Khu Du Lịch Sinh Thái Sơn Kiều",
+  publisher: "Khu Du Lịch Sinh Thái Sơn Kiều",
+  category: "travel",
+  keywords: [
+    "Sơn Kiều",
+    "Khu du lịch sinh thái Sơn Kiều",
+    "du lịch Quảng Trị",
+    "Trường Sơn Quảng Trị",
+    "hang động Quảng Trị",
+    "hồ suối tự nhiên",
+    "du lịch sinh thái",
+    "homestay Quảng Trị",
+  ],
 
   verification: {
     google: "HK53Pg8Ve3DcWu9t2LQCysCqAZiBU9R1LegXGDMcHCY",
@@ -57,6 +78,11 @@ export const metadata: Metadata = {
       "max-snippet":       -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#047857",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -42,7 +42,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!activity) return {};
 
   const description = activity.description?.slice(0, 155) ?? "";
-  const url         = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn"}/activities/${activity.slug ?? activity.id}`;
+  const siteUrl     = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn";
+  const url         = `${siteUrl}/activities/${activity.slug ?? activity.id}`;
+  const image       = activity.image_url ? [{ url: activity.image_url }] : [{ url: `${siteUrl}/opengraph-image` }];
 
   return {
     title:       activity.name,
@@ -51,8 +53,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title:       `${activity.name} | Sơn Kiều`,
       description,
       url,
-      images:      activity.image_url ? [{ url: activity.image_url }] : [],
+      images:      image,
       type:        "article",
+    },
+    twitter: {
+      card:        "summary_large_image",
+      title:       `${activity.name} | Sơn Kiều`,
+      description,
+      images:      image.map(i => i.url),
     },
     alternates: { canonical: url },
   };
@@ -93,6 +101,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
       "@type": "Organization",
       "name":  "Khu Du Lịch Sinh Thái Sơn Kiều",
       "url":   siteUrl,
+      "logo":  `${siteUrl}/icon.png`,
     },
   };
 
