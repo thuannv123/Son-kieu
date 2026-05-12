@@ -112,7 +112,7 @@ export default function PrivacyPage() {
             <div className="rounded-2xl bg-white p-6 shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
               <p className="text-[14px] leading-relaxed text-gray-600">
                 Khu Du Lịch Sinh Thái Sơn Kiều xây dựng chính sách này nhằm giải thích rõ cách chúng tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin cá nhân của quý khách khi sử dụng{" "}
-                <span className="font-semibold text-blue-700">sonkieu.vn</span> và dịch vụ đặt vé trực tuyến.
+                <span className="font-semibold text-blue-700">khudulichsonkieu.vn</span> và dịch vụ đặt vé trực tuyến.
                 Việc tiếp tục sử dụng dịch vụ đồng nghĩa quý khách đồng ý với chính sách này.
               </p>
             </div>
@@ -261,7 +261,7 @@ export default function PrivacyPage() {
                 {[
                   { icon: "🏢", label: "Khu Du Lịch Sinh Thái Sơn Kiều" },
                   { icon: "📍", label: "Trường Sơn, Quảng Ninh, tỉnh Quảng Trị" },
-                  { icon: "🌐", label: "sonkieu.vn" },
+                  { icon: "🌐", label: "khudulichsonkieu.vn" },
                 ].map(({ icon, label }) => (
                   <p key={label} className="flex items-center gap-2 text-[13px] text-blue-100">
                     <span>{icon}</span>{label}

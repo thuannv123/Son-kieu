@@ -10,7 +10,7 @@ const montserrat = Montserrat({
   display:  "swap",
 });
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.khudulichsonkieu.vn";
 const GTM_ID = "GTM-5NHCB3KW";
 const GA_ID = "G-E0563FK9L6";
 const SOCIAL_IMAGE = "/opengraph-image";

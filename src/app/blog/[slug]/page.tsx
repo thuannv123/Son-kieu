@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 
 export const revalidate = 60;
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.khudulichsonkieu.vn";
 
 const CAT_META: Record<string, { label: string; color: string; bg: string; icon: string }> = {
   news:  { label: "Tin tức",  color: "text-blue-700",   bg: "bg-blue-50",   icon: "📰" },

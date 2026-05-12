@@ -62,7 +62,7 @@ const WEATHER_URL =
   "&daily=weather_code,temperature_2m_max&forecast_days=7&timezone=Asia%2FBangkok";
 const WMO_DAYS = ["CN","T2","T3","T4","T5","T6","T7"] as const;
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.khudulichsonkieu.vn";
 const SOCIAL_IMAGE = `${SITE}/opengraph-image`;
 
 const homeJsonLd = {

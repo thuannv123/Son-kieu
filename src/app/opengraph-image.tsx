@@ -67,7 +67,7 @@ export default function OpenGraphImage() {
         </div>
 
         <div style={{ position: "relative", display: "flex", gap: 18, fontSize: 22, color: "#ecfdf5" }}>
-          <span>sonkieu.vn</span>
+          <span>khudulichsonkieu.vn</span>
           <span>•</span>
           <span>Trường Sơn · Quảng Trị</span>
         </div>

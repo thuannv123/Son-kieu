@@ -109,7 +109,7 @@ export default function TermsPage() {
             <div className="rounded-2xl bg-white p-6 shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
               <p className="text-[14px] leading-relaxed text-gray-600">
                 Các điều khoản này điều chỉnh việc quý khách sử dụng website{" "}
-                <span className="font-semibold text-emerald-700">sonkieu.vn</span> và dịch vụ đặt vé, tham quan của Khu Du Lịch Sinh Thái Sơn Kiều.
+                <span className="font-semibold text-emerald-700">khudulichsonkieu.vn</span> và dịch vụ đặt vé, tham quan của Khu Du Lịch Sinh Thái Sơn Kiều.
                 Bằng cách đặt vé hoặc sử dụng dịch vụ, quý khách xác nhận đã đọc và đồng ý bị ràng buộc bởi các điều khoản này.
               </p>
             </div>

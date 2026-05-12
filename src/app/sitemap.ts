@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.khudulichsonkieu.vn";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();

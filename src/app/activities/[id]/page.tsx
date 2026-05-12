@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!activity) return {};
 
   const description = activity.description?.slice(0, 155) ?? "";
-  const siteUrl     = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn";
+  const siteUrl     = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.khudulichsonkieu.vn";
   const url         = `${siteUrl}/activities/${activity.slug ?? activity.id}`;
   const image       = activity.image_url ? [{ url: activity.image_url }] : [{ url: `${siteUrl}/opengraph-image` }];
 
@@ -77,7 +77,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
 
   const catLabel = CATEGORY_LABEL[activity.category] ?? activity.category;
   const catIcon  = CATEGORY_ICON[activity.category] ?? "📍";
-  const siteUrl  = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sonkieu.vn";
+  const siteUrl  = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.khudulichsonkieu.vn";
   const pageUrl  = `${siteUrl}/activities/${activity.slug ?? activity.id}`;
 
   /* JSON-LD structured data */
