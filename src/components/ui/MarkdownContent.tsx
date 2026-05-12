@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 function parseInline(text: string): ReactNode {
-  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\/[a-z0-9][a-z0-9/_-]*)/gi);
   if (parts.length === 1) return text;
   return parts.map((p, i) => {
     if (p.startsWith("**") && p.endsWith("**"))
@@ -10,8 +11,16 @@ function parseInline(text: string): ReactNode {
       return <em key={i}>{p.slice(1, -1)}</em>;
     if (p.startsWith("`") && p.endsWith("`"))
       return <code key={i} className="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[0.85em] text-gray-700">{p.slice(1, -1)}</code>;
+    if (/^\/[a-z0-9][a-z0-9/_-]*$/i.test(p))
+      return <Link key={i} href={p} className="font-semibold text-emerald-700 hover:text-emerald-800">{p}</Link>;
     return p;
   });
+}
+
+function getHeading(line: string) {
+  const match = line.match(/^(#{2,4})\s*(.+)$/);
+  if (!match) return null;
+  return { level: match[1].length, text: match[2].trim() };
 }
 
 interface Props {
@@ -32,24 +41,26 @@ export default function MarkdownContent({ content, className = "" }: Props) {
         if (trimmed === "---")
           return <hr key={bi} className="border-gray-200" />;
 
-        if (first.startsWith("## "))
+        const heading = getHeading(first);
+
+        if (heading?.level === 2)
           return (
             <h2 key={bi} className="mt-2 text-xl font-bold text-gray-900">
-              {parseInline(first.slice(3))}
+              {parseInline(heading.text)}
             </h2>
           );
 
-        if (first.startsWith("### "))
+        if (heading?.level === 3)
           return (
             <h3 key={bi} className="mt-1 text-[17px] font-bold text-gray-800">
-              {parseInline(first.slice(4))}
+              {parseInline(heading.text)}
             </h3>
           );
 
-        if (first.startsWith("#### "))
+        if (heading?.level === 4)
           return (
             <h4 key={bi} className="text-[15px] font-bold text-gray-800">
-              {parseInline(first.slice(5))}
+              {parseInline(heading.text)}
             </h4>
           );
 
