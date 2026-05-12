@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -56,11 +57,14 @@ function ClockIcon() {
 }
 function LogoMark() {
   return (
-    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-600">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M17 3C17 3 10 5 7 12C5 17 8 21 12 21C16 21 19 17 19 13C19 9 16 7 13 8C11 8.5 10 10 11 12C12 14 15 13 15 11" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none"/>
-        <path d="M7 12C5 8 6 4 8 3" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      </svg>
+    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white ring-1 ring-white/10">
+      <Image
+        src="/icon.png"
+        alt="Sơn Kiều"
+        width={28}
+        height={28}
+        className="h-7 w-7 object-contain"
+      />
     </div>
   );
 }

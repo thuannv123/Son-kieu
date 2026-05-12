@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,16 +16,19 @@ const NAV_LINKS = [
 
 function LogoMark({ solid }: { solid: boolean }) {
   return (
-    <div className={`flex h-8 w-8 items-center justify-center rounded-xl transition-colors ${
-      solid ? "bg-emerald-600" : "bg-emerald-500/20 ring-1 ring-emerald-400/30"
+    <div className={`flex h-11 w-11 items-center justify-center overflow-hidden rounded-full transition-all duration-300 ${
+      solid
+        ? "bg-white shadow-[0_10px_30px_rgba(15,23,42,0.10)] ring-1 ring-emerald-950/10"
+        : "bg-white/95 shadow-[0_10px_34px_rgba(0,0,0,0.24)] ring-1 ring-white/60"
     }`}>
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M17 3C17 3 10 5 7 12C5 17 8 21 12 21C16 21 19 17 19 13C19 9 16 7 13 8C11 8.5 10 10 11 12C12 14 15 13 15 11"
-          stroke={solid ? "white" : "#86efac"} strokeWidth="2" strokeLinecap="round" fill="none"
-        />
-        <path d="M7 12C5 8 6 4 8 3" stroke={solid ? "#86efac" : "#4ade80"} strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      </svg>
+      <Image
+        src="/icon.png"
+        alt="Sơn Kiều"
+        width={40}
+        height={40}
+        className="h-10 w-10 object-contain"
+        priority
+      />
     </div>
   );
 }
@@ -78,12 +82,23 @@ export default function Navbar() {
       <nav className="mx-auto flex h-[66px] max-w-6xl items-center justify-between px-4 md:px-6">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className={`group flex items-center gap-3 rounded-full py-1.5 pl-1.5 pr-4 outline-none transition-all duration-300 focus-visible:ring-2 focus-visible:ring-emerald-300/70 ${
+          solid
+            ? "bg-white shadow-sm ring-1 ring-emerald-900/10 hover:ring-emerald-600/25 hover:shadow-md"
+            : "bg-emerald-950/[0.34] ring-1 ring-emerald-300/20 backdrop-blur-md hover:bg-emerald-950/[0.46] hover:ring-emerald-300/35"
+        }`}>
           <LogoMark solid={solid} />
-          <span className={`text-[15px] font-bold tracking-tight transition-colors ${
-            solid ? "text-gray-900" : "text-white"
-          }`}>
-            AMF<span className={`font-light ${solid ? "text-emerald-600" : "text-emerald-300"}`}>·ECO</span>
+          <span className="flex flex-col leading-none">
+            <span className={`text-[16px] font-black tracking-tight transition-colors ${
+              solid ? "text-gray-950" : "text-white"
+            }`}>
+              Sơn Kiều
+            </span>
+            <span className={`mt-1 hidden text-[9px] font-bold uppercase tracking-[0.18em] transition-colors sm:block ${
+              solid ? "text-emerald-700" : "text-emerald-200/90"
+            }`}>
+             Khu Du Lịch Sinh Thái
+            </span>
           </span>
         </Link>
 

@@ -103,7 +103,7 @@ export default function HeroSection({
           {/* Left: Copy */}
           <div>
             {/* Location pill */}
-            <div className="mb-7 inline-flex items-center gap-2.5 rounded-full
+            {/* <div className="mb-7 inline-flex items-center gap-2.5 rounded-full
                             border border-emerald-600/30 bg-emerald-950/55
                             px-4 py-1.5 backdrop-blur-sm">
               <span className="text-emerald-400"><MapPinIcon /></span>
@@ -111,7 +111,7 @@ export default function HeroSection({
                 Trường Sơn · Quảng Trị
               </span>
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-            </div>
+            </div> */}
 
             {/* Headline */}
             <h1 className="text-[clamp(2.9rem,6.5vw,5.4rem)] font-black leading-[1.02] tracking-[-0.03em] text-white">
