@@ -28,21 +28,36 @@ export const revalidate = 60;
 
 /* ── Weather helpers ─────────────────────────────────────── */
 type WmoKey = "sunny" | "cloudy" | "rainy" | "storm" | "shower";
+
+function isUnsafeWeather(code: number, windSpeed = 0, rainProbability = 0): boolean {
+  // Open-Meteo WMO codes: thunderstorms and heavy rain are the risky cases
+  // for water/cave/outdoor activities. Light cloud or brief drizzle should not
+  // mark the whole resort as closed.
+  const severeCodes = new Set([65, 67, 82, 95, 96, 99]);
+  return severeCodes.has(code) || windSpeed >= 38 || rainProbability >= 80;
+}
+
 function wmoKey(c: number): WmoKey {
   if (c <= 1)               return "sunny";
   if (c <= 3)               return "cloudy";
   if (c >= 95)              return "storm";
+  if (c >= 80 && c <= 82)   return "shower";
   if (c >= 61 && c <= 67)   return "rainy";
+  if (c >= 51 && c <= 57)   return "shower";
+  if (c >= 45 && c <= 48)   return "cloudy";
   return "shower";
 }
 function wmoLabel(c: number): string {
   if (c === 0) return "Nắng đẹp";
   if (c === 1) return "Quang đãng";
-  if (c <=  3) return "Ít mây";
+  if (c <=  3) return "Có mây";
   if (c <= 48) return "Sương mù";
-  if (c <= 55) return "Mưa phùn";
-  if (c <= 67) return "Có mưa";
-  if (c <= 82) return "Mưa rào";
+  if (c <= 57) return "Mưa phùn";
+  if (c <= 63) return "Có mưa";
+  if (c <= 67) return "Mưa lớn";
+  if (c <= 77) return "Mưa tuyết";
+  if (c <= 81) return "Mưa rào";
+  if (c === 82) return "Mưa rào mạnh";
   return "Có dông";
 }
 function wmoDesc(c: number): string {
@@ -50,16 +65,19 @@ function wmoDesc(c: number): string {
   if (c === 1) return "Quang đãng, ít mây";
   if (c <=  3) return "Có mây, nắng xen kẽ";
   if (c <= 48) return "Sương mù, tầm nhìn hạn chế";
-  if (c <= 55) return "Mưa phùn nhẹ";
-  if (c <= 67) return "Trời có mưa";
-  if (c <= 82) return "Mưa rào, giông nhẹ";
-  return "Dông bão, cần cẩn thận";
+  if (c <= 57) return "Mưa phùn nhẹ";
+  if (c <= 63) return "Trời có mưa";
+  if (c <= 67) return "Mưa lớn, cần cẩn thận";
+  if (c <= 77) return "Mưa tuyết";
+  if (c <= 81) return "Mưa rào ngắn";
+  if (c === 82) return "Mưa rào mạnh, hạn chế hoạt động nước";
+  return "Dông sét, cần cẩn thận";
 }
 const WEATHER_URL =
   "https://api.open-meteo.com/v1/forecast" +
   "?latitude=17.1893&longitude=106.5845" +
   "&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code" +
-  "&daily=weather_code,temperature_2m_max&forecast_days=7&timezone=Asia%2FBangkok";
+  "&daily=weather_code,temperature_2m_max,precipitation_probability_max&forecast_days=7&timezone=Asia%2FBangkok";
 const WMO_DAYS = ["CN","T2","T3","T4","T5","T6","T7"] as const;
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.khudulichsonkieu.vn";
@@ -164,18 +182,27 @@ export default async function HomePage() {
   if (weatherRaw?.current && weatherRaw?.daily) {
     const c = weatherRaw.current;
     const d = weatherRaw.daily;
+    const todayCode = Number(d.weather_code?.[0] ?? c.weather_code);
+    const todayRainProbability = Number(d.precipitation_probability_max?.[0] ?? 0);
+    const currentCode = Number(c.weather_code);
+    const currentWind = Number(c.wind_speed_10m ?? 0);
+    const isTodaySafe =
+      !isUnsafeWeather(currentCode, currentWind) &&
+      !isUnsafeWeather(todayCode, currentWind, todayRainProbability);
+
     weatherData = {
       current: {
         temp:     Math.round(c.temperature_2m),
         humidity: Math.round(c.relative_humidity_2m),
         wind:     Math.round(c.wind_speed_10m),
-        icon:     wmoKey(c.weather_code),
-        desc:     wmoDesc(c.weather_code),
-        isSafe:   c.weather_code <= 3,
+        icon:     wmoKey(currentCode),
+        desc:     isTodaySafe ? wmoDesc(currentCode) : wmoDesc(todayCode),
+        isSafe:   isTodaySafe,
       },
       forecast: (d.time as string[]).map((dateStr: string, i: number) => {
         const dt   = new Date(dateStr + "T00:00:00");
-        const code = d.weather_code[i] as number;
+        const code = Number(d.weather_code[i]);
+        const rainProbability = Number(d.precipitation_probability_max?.[i] ?? 0);
         return {
           date:   i === 0 ? "HN" : WMO_DAYS[dt.getDay()],
           dayNum: dt.getDate(),
@@ -183,7 +210,7 @@ export default async function HomePage() {
           icon:   wmoKey(code),
           label:  wmoLabel(code),
           temp:   Math.round(d.temperature_2m_max[i]),
-          isSafe: code <= 3,
+          isSafe: !isUnsafeWeather(code, 0, rainProbability),
         };
       }),
     };
