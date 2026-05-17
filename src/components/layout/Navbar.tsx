@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 
 /* ── Navigation links ─────────────────────────────────── */
 const NAV_LINKS = [
+  { href: "/about",      label: "Giới Thiệu" },
   { href: "/activities", label: "Hoạt Động"  },
   { href: "/dining",     label: "Ẩm Thực"    },
   { href: "/gallery",    label: "Thư Viện"   },
   { href: "/pricing",    label: "Bảng Giá"   },
   { href: "/blog",       label: "Tin Tức"    },
-  { href: "/about",      label: "Giới Thiệu" },
 ];
 
 const MORE_LINKS = [
