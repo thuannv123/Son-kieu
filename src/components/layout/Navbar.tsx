@@ -81,7 +81,7 @@ export default function Navbar() {
           {/* Left — Logo */}
           <Link href="/" className="flex flex-shrink-0 items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full
-                             bg-white/10 ring-1 ring-white/20">
+                             bg-white ring-1 ring-white/40">
               <Image
                 src="/icon.png"
                 alt="Sơn Kiều"
