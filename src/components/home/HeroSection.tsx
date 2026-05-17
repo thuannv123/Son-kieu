@@ -91,10 +91,22 @@ export default function HeroSection({
         </div>
       </div>
 
-      {/* ── Booking bar (Keemala rounded pill at bottom) ───── */}
-      <div className="absolute inset-x-4 bottom-6 z-20 mx-auto max-w-5xl overflow-hidden
-                      rounded-[80px] border border-white/50 bg-white/94 backdrop-blur-md
-                      md:bottom-8">
+      {/* ── Booking bar ───── */}
+      {/* Mobile: compact pill with just CTA */}
+      <div className="absolute inset-x-4 bottom-6 z-20 md:hidden">
+        <Link href="/booking"
+              className="flex w-full items-center justify-center gap-2.5
+                         rounded-full border border-white/50 bg-white/94
+                         py-4 text-[12px] font-bold uppercase tracking-[0.22em]
+                         text-[#052e16] backdrop-blur-md transition hover:bg-white">
+          Đặt Vé Ngay <ArrowIcon />
+        </Link>
+      </div>
+
+      {/* Desktop: full pill booking bar */}
+      <div className="absolute inset-x-4 bottom-8 z-20 mx-auto hidden max-w-5xl
+                      overflow-hidden rounded-[80px] border border-white/50
+                      bg-white/94 backdrop-blur-md md:block">
         <div className="grid gap-px bg-gray-100 md:grid-cols-[1fr_1fr_1fr_auto]">
           {[
             ["Điểm đến",    "Khu du lịch Sơn Kiều"                           ],
