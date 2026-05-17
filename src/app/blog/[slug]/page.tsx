@@ -9,18 +9,11 @@ export const revalidate = 60;
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.khudulichsonkieu.vn";
 
-const CAT_META: Record<string, { label: string; color: string; bg: string; icon: string }> = {
-  news:  { label: "Tin tức",  color: "text-blue-700",   bg: "bg-blue-50",   icon: "📰" },
-  guide: { label: "Cẩm nang", color: "text-violet-700", bg: "bg-violet-50", icon: "🗺️" },
-  food:  { label: "Ẩm thực",  color: "text-orange-700", bg: "bg-orange-50", icon: "🍖" },
-  event: { label: "Sự kiện",  color: "text-rose-700",   bg: "bg-rose-50",   icon: "🎉" },
-};
-
-const CAT_GRADIENT: Record<string, string> = {
-  news:  "from-blue-700 to-blue-950",
-  guide: "from-violet-700 to-violet-950",
-  food:  "from-orange-700 to-orange-950",
-  event: "from-rose-700 to-rose-950",
+const CAT_META: Record<string, { label: string; icon: string }> = {
+  news:  { label: "Tin tức",  icon: "📰" },
+  guide: { label: "Cẩm nang", icon: "🗺️" },
+  food:  { label: "Ẩm thực",  icon: "🍖" },
+  event: { label: "Sự kiện",  icon: "🎉" },
 };
 
 export async function generateMetadata({
@@ -106,7 +99,7 @@ export default async function BlogPostPage({
       {/* ── Cover ── */}
       <div className={`relative w-full overflow-hidden pt-16 ${
         post.cover_image ? "h-[60vh] min-h-[340px]" : "h-48"
-      } bg-gradient-to-br ${CAT_GRADIENT[post.category] ?? "from-emerald-900 to-emerald-950"}`}>
+      } bg-[#052e16]`}>
         {post.cover_image && (
           <Image src={post.cover_image} alt={post.title} fill
             className="object-cover" sizes="100vw" priority
@@ -131,10 +124,10 @@ export default async function BlogPostPage({
         <div className="absolute inset-x-0 bottom-0 px-4 pb-8">
           <div className="mx-auto max-w-3xl">
             <div className="mb-3 flex items-center gap-2">
-              <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold
-                ${CAT_META[post.category]?.bg ?? "bg-white/20"}
-                ${CAT_META[post.category]?.color ?? "text-white"}`}>
-                {CAT_META[post.category]?.icon} {CAT_META[post.category]?.label ?? post.category}
+              <span className="border border-white/30 bg-white/15 px-2.5 py-0.5
+                              text-[11px] font-bold uppercase tracking-[0.1em] text-white backdrop-blur-sm"
+                style={{ borderRadius: 0 }}>
+                {CAT_META[post.category]?.label ?? post.category}
               </span>
               {post.published_at && (
                 <span className="text-[11px] text-white/60">
@@ -156,9 +149,8 @@ export default async function BlogPostPage({
         <div className="mx-auto max-w-3xl px-4 py-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full
-                              bg-gradient-to-br from-emerald-400 to-teal-500
-                              text-[14px] font-black text-white shadow-sm">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center
+                              bg-[#052e16] text-[14px] font-black text-white">
                 {post.author?.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -177,8 +169,7 @@ export default async function BlogPostPage({
 
       {/* ── Content ── */}
       <div className="mx-auto max-w-3xl px-4 py-10">
-        <article className="rounded-3xl bg-white px-7 py-8 shadow-[0_2px_20px_rgba(0,0,0,0.06)]
-                            ring-1 ring-black/[0.04] sm:px-10 sm:py-10">
+        <article className="border border-gray-100 bg-white px-7 py-8 sm:px-10 sm:py-10">
           {post.content
             ? <MarkdownContent content={post.content} className="leading-[1.85]" />
             : <p className="text-[15px] text-gray-400">Bài viết chưa có nội dung.</p>
@@ -192,13 +183,10 @@ export default async function BlogPostPage({
             <div className="grid gap-4 sm:grid-cols-3">
               {related!.map(r => (
                 <Link key={r.id} href={`/blog/${r.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-2xl bg-white
-                             shadow-[0_1px_10px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]
-                             transition-all hover:-translate-y-0.5
-                             hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
-                             hover:ring-emerald-200">
-                  <div className={`relative h-32 overflow-hidden bg-gradient-to-br
-                    ${CAT_GRADIENT[r.category] ?? "from-emerald-700 to-emerald-950"}`}>
+                  className="group flex flex-col overflow-hidden border border-gray-200 bg-white
+                             transition-all hover:border-[#052e16]/20
+                             hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
+                  <div className="relative h-32 overflow-hidden bg-[#052e16]">
                     {r.cover_image && (
                       <Image src={r.cover_image} alt={r.title} fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -207,10 +195,10 @@ export default async function BlogPostPage({
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   </div>
                   <div className="flex flex-1 flex-col p-4">
-                    <span className={`w-fit rounded-full px-2.5 py-0.5 text-[10px] font-bold
-                      ${CAT_META[r.category]?.bg ?? "bg-gray-100"}
-                      ${CAT_META[r.category]?.color ?? "text-gray-600"}`}>
-                      {CAT_META[r.category]?.icon} {CAT_META[r.category]?.label ?? r.category}
+                    <span className="w-fit border border-gray-200 px-2.5 py-0.5 text-[10px] font-bold
+                                     uppercase tracking-[0.1em] text-[#052e16]"
+                      style={{ borderRadius: 0 }}>
+                      {CAT_META[r.category]?.label ?? r.category}
                     </span>
                     <h3 className="mt-2 text-[13px] font-bold leading-snug text-gray-900 line-clamp-2
                                    transition-colors group-hover:text-emerald-700">
@@ -227,10 +215,10 @@ export default async function BlogPostPage({
         {/* Back link */}
         <div className="mt-10 flex justify-center">
           <Link href="/blog"
-            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white
-                       px-6 py-3 text-[13px] font-semibold text-gray-700 shadow-sm
-                       transition hover:border-emerald-300 hover:text-emerald-700
-                       hover:shadow-[0_4px_14px_rgba(16,185,129,0.12)]">
+            className="inline-flex items-center gap-2 border border-gray-200 bg-white
+                       px-6 py-3 text-[13px] font-semibold text-gray-700
+                       transition hover:border-[#052e16]/30 hover:text-[#052e16]"
+            style={{ borderRadius: 0 }}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
             Xem tất cả bài viết
           </Link>

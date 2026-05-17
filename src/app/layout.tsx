@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat } from "next/font/google";
+import { Cormorant_Garamond, Dancing_Script, Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import SiteShell from "@/components/layout/SiteShell";
@@ -7,6 +7,20 @@ import SiteShell from "@/components/layout/SiteShell";
 const montserrat = Montserrat({
   subsets:  ["latin", "vietnamese"],
   variable: "--font-montserrat",
+  display:  "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets:  ["latin", "vietnamese"],
+  weight:   ["400", "500", "600"],
+  variable: "--font-display",
+  display:  "swap",
+});
+
+const dancingScript = Dancing_Script({
+  subsets:  ["latin"],
+  weight:   ["600", "700"],
+  variable: "--font-cursive",
   display:  "swap",
 });
 
@@ -83,13 +97,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#047857",
+  themeColor: "#10b981",
   colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="vi" className={montserrat.variable}>
+    <html lang="vi" className={`${montserrat.variable} ${cormorant.variable} ${dancingScript.variable}`}>
       <body className="font-sans antialiased">
         <noscript>
           <iframe

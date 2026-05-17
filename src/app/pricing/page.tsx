@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Activity, ActivityCategory } from "@/types";
 import { ACTIVITIES, CATEGORY_META } from "@/lib/mock-data";
+import PageHero from "@/components/ui/PageHero";
 
 export const revalidate = 60;
 
@@ -110,14 +111,12 @@ function ActivityCard({ activity }: { activity: Activity }) {
   const cfg = CAT_CONFIG[activity.category as ActivityCategory] ?? CAT_CONFIG.SIGHTSEEING;
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-3xl bg-white
-                    shadow-[0_2px_12px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]
-                    transition-all duration-300 hover:-translate-y-1
-                    hover:shadow-[0_12px_36px_rgba(0,0,0,0.10)]
-                    hover:ring-emerald-200/60">
+    <div className="group flex flex-col overflow-hidden border border-gray-200 bg-white
+                    transition-all duration-300 hover:border-[#052e16]/20
+                    hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
 
       {/* Image */}
-      <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${cfg.gradient}`}>
+      <div className="relative h-44 overflow-hidden bg-[#052e16]">
         {activity.image_url ? (
           <Image
             src={activity.image_url}
@@ -181,9 +180,9 @@ function ActivityCard({ activity }: { activity: Activity }) {
 
         <div className="mt-auto pt-2">
           <Link href={`/booking?activity=${activity.id}`}
-            className="block w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-center
-                       text-[13px] font-bold text-white shadow-[0_4px_14px_rgba(16,185,129,0.25)]
-                       transition hover:bg-emerald-500 hover:shadow-[0_4px_14px_rgba(16,185,129,0.40)]">
+            className="block w-full bg-emerald-600 px-4 py-2.5 text-center
+                       text-[13px] font-bold text-white transition hover:bg-emerald-500"
+            style={{ borderRadius: 0 }}>
             Đặt Ngay
           </Link>
         </div>
@@ -237,69 +236,14 @@ export default async function PricingPage() {
   return (
     <main className="min-h-screen">
 
-      {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-16"
-        style={{ background: "linear-gradient(160deg,#030f05 0%,#071a0b 55%,#040e06 100%)" }}>
-
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[380px] w-[650px] -translate-x-1/2 -translate-y-1/4 rounded-full blur-[100px]"
-            style={{ background: "radial-gradient(ellipse,rgba(16,185,129,0.12) 0%,transparent 70%)" }} />
-        </div>
-
-        <div className="pointer-events-none absolute inset-0 opacity-[0.025]">
-          <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="prdots" width="32" height="32" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="1" fill="white"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#prdots)" />
-          </svg>
-        </div>
-
-        <div className="relative mx-auto max-w-5xl px-4 py-16 text-center md:px-6 md:py-20">
-          <div className="mb-6 flex items-center justify-center gap-2 text-[12px] text-white/40">
-            <Link href="/" className="transition hover:text-white/70">Trang chủ</Link>
-            <span>/</span>
-            <span className="text-white/60">Bảng giá</span>
-          </div>
-
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10
-                          bg-white/[0.06] px-4 py-1.5 text-[11px] font-bold uppercase
-                          tracking-[0.18em] text-white/60 backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-            Giá vé · Sơn Kiều
-          </div>
-
-          <h1 className="text-4xl font-black leading-none text-white md:text-[3.2rem]">
-            Bảng Giá{" "}
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
-              Minh Bạch
-            </span>
-          </h1>
-          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-white/50">
-            Giá rõ ràng, không phát sinh — đặt trước để đảm bảo suất tham quan.
-          </p>
-
-          {/* Stats */}
-          <div className="mt-10 flex flex-wrap justify-center gap-6">
-            {[
-              { label: "Từ", value: "20.000đ", sub: "/ người" },
-              { label: "Trẻ em dưới 1m", value: "Miễn phí", sub: "" },
-              { label: "Đặt vé", value: "24/7", sub: "trực tuyến" },
-            ].map(s => (
-              <div key={s.label} className="flex flex-col items-center rounded-2xl border border-white/[0.08]
-                                            bg-white/[0.04] px-6 py-3 text-center backdrop-blur-sm">
-                <p className="text-[11px] text-emerald-400/70 uppercase tracking-wide">{s.label}</p>
-                <p className="text-[1.4rem] font-black text-white">{s.value}</p>
-                {s.sub && <p className="text-[11px] text-white/40">{s.sub}</p>}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-b from-transparent to-white" />
-      </section>
+      <PageHero
+        title="Bảng Giá Minh Bạch"
+        eyebrow="Giá Vé · Sơn Kiều"
+        subtitle="Giá rõ ràng, không phát sinh — đặt trước để đảm bảo suất tham quan. Trẻ em dưới 1m miễn phí."
+        crumbs={[{ label: "Bảng Giá" }]}
+        size="compact"
+        cta={{ label: "Đặt Vé Ngay", href: "/booking" }}
+      />
 
       {/* Fetch failed banner */}
       {fetchFailed && (
@@ -372,13 +316,13 @@ export default async function PricingPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {COMBOS.map(combo => (
               <div key={combo.title}
-                className="flex flex-col overflow-hidden rounded-3xl bg-white
-                           shadow-[0_2px_16px_rgba(0,0,0,0.07)] ring-1 ring-black/[0.04]
-                           transition-all hover:-translate-y-1
-                           hover:shadow-[0_12px_36px_rgba(0,0,0,0.10)]">
-                <div className={`relative overflow-hidden bg-gradient-to-br ${combo.color} p-6 text-white`}
-                  style={{ boxShadow: `inset 0 -1px 0 rgba(255,255,255,0.1)` }}>
-                  <span className="inline-block rounded-full bg-white/20 px-2.5 py-0.5 text-[11px] font-bold text-white">
+                className="flex flex-col overflow-hidden border border-gray-200 bg-white
+                           transition-all hover:border-[#052e16]/20
+                           hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
+                <div className="relative overflow-hidden bg-[#052e16] p-6 text-white">
+                  <span className="inline-block border border-white/20 bg-white/10 px-2.5 py-0.5
+                                   text-[11px] font-bold uppercase tracking-[0.1em] text-white"
+                    style={{ borderRadius: 0 }}>
                     {combo.highlight}
                   </span>
                   <h3 className="mt-2 text-[16px] font-black">{combo.title}</h3>
@@ -396,9 +340,9 @@ export default async function PricingPage() {
                     ))}
                   </ul>
                   <Link href="/booking"
-                    className="mt-5 block w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-center
-                               text-[13px] font-bold text-white shadow-[0_4px_14px_rgba(16,185,129,0.25)]
-                               transition hover:bg-emerald-500 hover:shadow-[0_4px_14px_rgba(16,185,129,0.40)]">
+                    className="mt-5 block w-full bg-emerald-600 px-4 py-2.5 text-center
+                               text-[13px] font-bold text-white transition hover:bg-emerald-500"
+                    style={{ borderRadius: 0 }}>
                     Đặt Combo Này
                   </Link>
                 </div>
@@ -416,13 +360,12 @@ export default async function PricingPage() {
       {/* Notes */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <div className="rounded-3xl bg-gray-50 p-8 ring-1 ring-black/[0.04]">
+          <div className="border border-gray-100 bg-gray-50 p-8">
             <h2 className="mb-6 text-[18px] font-black text-gray-900">📋 Lưu Ý Quan Trọng</h2>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-px bg-gray-200 sm:grid-cols-2">
               {NOTES.map(note => (
                 <div key={note.text}
-                  className="flex items-start gap-3 rounded-2xl bg-white px-4 py-3
-                             shadow-[0_1px_8px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.03]">
+                  className="flex items-start gap-3 bg-white px-4 py-3">
                   <span className="shrink-0 text-lg">{note.icon}</span>
                   <p className="text-[13px] leading-relaxed text-gray-700">{note.text}</p>
                 </div>
@@ -436,24 +379,23 @@ export default async function PricingPage() {
       <section className="py-16"
         style={{ background: "linear-gradient(160deg,#030f05 0%,#071a0b 55%,#040e06 100%)" }}>
         <div className="mx-auto max-w-6xl px-4 text-center md:px-6">
-          <h2 className="text-[28px] font-black text-white md:text-[2rem]">
-            Sẵn Sàng{" "}
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
-              Khám Phá?
-            </span>
+          <h2 className="font-display text-[28px] font-normal italic text-white md:text-[2rem]">
+            Sẵn Sàng Khám Phá?
           </h2>
           <p className="mt-3 text-[15px] text-white/50">
             Đặt vé ngay hôm nay — xác nhận tức thì, nhận QR code qua SMS &amp; email.
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="/booking"
-              className="rounded-full bg-emerald-600 px-8 py-3.5 text-[14px] font-bold text-white
-                         shadow-[0_4px_20px_rgba(16,185,129,0.40)] transition hover:bg-emerald-500">
+              className="bg-emerald-600 px-8 py-3.5 text-[14px] font-bold text-white
+                         transition hover:bg-emerald-500"
+              style={{ borderRadius: 0 }}>
               Đặt Vé Ngay
             </Link>
             <a href="tel:0857086588"
-              className="rounded-full border border-white/15 bg-white/[0.06] px-8 py-3.5
-                         text-[14px] font-bold text-white backdrop-blur-sm transition hover:bg-white/[0.12]">
+              className="border border-white/20 bg-white/[0.06] px-8 py-3.5
+                         text-[14px] font-bold text-white transition hover:bg-white/[0.12]"
+              style={{ borderRadius: 0 }}>
               Gọi 0857 086 588
             </a>
           </div>

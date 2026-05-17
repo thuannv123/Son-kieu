@@ -2,7 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
+  :root {
+    /* ── Light surfaces ── */
+    --color-bg:           #ffffff;
+    --color-bg-soft:      #f8fdf9;
+    --color-bg-warm:      #fff7ed;
+
+    /* ── Dark canopy (Keemala-style dark sections) ── */
+    --color-canopy:       #052e16;
+    --color-canopy-mid:   #073d1e;
+    --color-canopy-light: #0a5228;
+
+    /* ── Brand greens ── */
+    --color-primary:   #16a34a;
+    --color-secondary: #10b981;
+    --color-forest:    #15803d;
+    --color-deep:      #14532d;
+
+    /* ── Text ── */
+    --color-text:     #111827;
+    --color-text-mid: #374151;
+    --color-text-sub: #6b7280;
+
+    /* ── Borders ── */
+    --color-border:       #e5e7eb;
+    --color-border-light: #f0fdf4;
+
+    /* ── Radii ── */
+    --radius-card:    50px;
+    --radius-card-lg: 80px;
+    --radius-input:   6px;
+
+    /* ── Spacing unit ── */
+    --space-base: 5px;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -11,39 +47,213 @@
   }
 
   body {
-    @apply bg-white text-gray-900;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: 16px;
+    line-height: 1.8;
   }
 
+  /* ── Heading scale ── */
   h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.025em;
+    font-family: var(--font-display), "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.1;
   }
+
+  h1 { font-size: clamp(3rem, 8vw, 6.5rem); letter-spacing: 0.06em; }
+  h2 { font-size: clamp(2rem, 5vw, 3.8rem); letter-spacing: 0.04em; }
+  h3 { font-size: clamp(1.4rem, 3vw, 2rem);  letter-spacing: 0.03em; }
 
   *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-emerald-500 rounded-sm;
+    outline: 2px solid #16a34a;
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: #bbf7d0;
+    color: #052e16;
+  }
+}
+
+@layer components {
+  /* ─── Container ──────────────────────────────────────── */
+  .ds-container {
+    @apply mx-auto w-full max-w-6xl px-4 md:px-8;
+  }
+  .ds-container-wide {
+    @apply mx-auto w-full max-w-7xl px-4 md:px-8;
+  }
+
+  /* ─── Section light ──────────────────────────────────── */
+  .ds-section {
+    @apply bg-white py-24 md:py-32;
+  }
+  .ds-section-soft {
+    background: var(--color-bg-soft);
+    @apply py-24 md:py-32;
+  }
+
+  /* ─── Section dark (Keemala canopy) ─────────────────── */
+  .ds-section-dark {
+    background: var(--color-canopy);
+    color: #ffffff;
+    @apply relative py-24 md:py-32;
+  }
+  .ds-section-dark h1,
+  .ds-section-dark h2,
+  .ds-section-dark h3,
+  .ds-section-dark h4 {
+    color: #ffffff;
+  }
+  .ds-section-dark p {
+    color: rgba(255,255,255,0.82);
+  }
+
+  /* ─── Cards ──────────────────────────────────────────── */
+  .ds-card {
+    @apply overflow-hidden border border-[var(--color-border)] bg-white;
+    border-radius: var(--radius-card);
+    box-shadow: none;
+  }
+  .ds-card-lg {
+    @apply overflow-hidden border border-[var(--color-border)] bg-white;
+    border-radius: var(--radius-card-lg);
+    box-shadow: none;
+  }
+
+  /* ─── Buttons (Keemala: sharp, uppercase) ────────────── */
+  .ds-btn {
+    @apply inline-flex items-center justify-center gap-2
+           border px-7 py-3 text-[12px] font-semibold uppercase tracking-[0.2em]
+           transition-all duration-200;
+    border-radius: 0;
+  }
+  .ds-btn-primary {
+    @apply ds-btn border-[#16a34a] bg-[#16a34a] text-white
+           hover:border-[#15803d] hover:bg-[#15803d];
+  }
+  .ds-btn-outline {
+    @apply ds-btn border-[#16a34a] bg-transparent text-[#16a34a]
+           hover:bg-[#f0fdf4];
+  }
+  .ds-btn-outline-white {
+    @apply ds-btn border-white/70 bg-transparent text-white
+           hover:bg-white/10;
+  }
+  .ds-btn-white {
+    @apply ds-btn border-white bg-white text-[#052e16]
+           hover:bg-white/90;
+  }
+  /* Gold outline — Keemala Book Now style */
+  .ds-btn-gold {
+    @apply ds-btn border-[#16a34a] bg-transparent text-[#16a34a]
+           hover:bg-[#16a34a] hover:text-white;
+  }
+  /* On dark backgrounds */
+  .ds-btn-gold-dark {
+    @apply ds-btn border-[#22c55e] bg-transparent text-[#22c55e]
+           hover:bg-[#22c55e] hover:text-[#052e16];
+  }
+
+  /* ─── Input ──────────────────────────────────────────── */
+  .ds-input {
+    @apply w-full border border-[var(--color-border)] bg-white px-4 py-3
+           text-[14px] text-[var(--color-text)] placeholder:text-[var(--color-text-sub)]
+           transition focus:border-[#16a34a] focus:outline-none focus:ring-2 focus:ring-[#16a34a]/15;
+    border-radius: var(--radius-input);
+  }
+
+  /* ─── Label / eyebrow ────────────────────────────────── */
+  .ds-label {
+    @apply block text-[10px] font-bold uppercase tracking-[0.26em] text-[#16a34a];
+  }
+  .ds-label-white {
+    @apply block text-[10px] font-bold uppercase tracking-[0.26em] text-white/60;
+  }
+
+  /* ─── Cursive display (Keemala script style) ─────────── */
+  .ds-cursive {
+    font-family: "Dancing Script", cursive;
+    font-weight: 600;
+  }
+
+  /* ─── Table ──────────────────────────────────────────── */
+  .ds-table {
+    @apply overflow-hidden border border-[var(--color-border)] bg-white;
+    border-radius: 35px;
+    box-shadow: none;
   }
 }
 
 @layer utilities {
+  /* ─── Scrollbar ──────────────────────────────────────── */
   .scrollbar-thin {
     scrollbar-width: thin;
-    scrollbar-color: #86efac #f3f4f6;
+    scrollbar-color: #16a34a #f0fdf4;
   }
-  .scrollbar-thin::-webkit-scrollbar       { width: 6px; }
-  .scrollbar-thin::-webkit-scrollbar-track { background: #f3f4f6; }
-  .scrollbar-thin::-webkit-scrollbar-thumb { background: #86efac; border-radius: 3px; }
+  .scrollbar-thin::-webkit-scrollbar       { width: 5px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: #f0fdf4; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 3px; }
 
-  /* Gradient text helper */
-  .gradient-text {
-    @apply bg-gradient-to-r from-emerald-300 via-emerald-200 to-emerald-400 bg-clip-text text-transparent;
+  /* ─── Remove all box shadows ─────────────────────────── */
+  [class*="shadow-"] { box-shadow: none !important; }
+
+  /* ─── Global button: no radius + no shadow ───────────── */
+  a.ds-btn, button.ds-btn,
+  a[class*="ds-btn"], button[class*="ds-btn"] {
+    border-radius: 0 !important;
+    box-shadow: none !important;
   }
 
-  /* Glass card */
-  .glass {
-    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  /* ─── Inputs stay softly rounded ─────────────────────── */
+  input, textarea, select {
+    border-radius: var(--radius-input) !important;
   }
 
-  /* Section label */
-  .label {
-    @apply text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-600;
+  /* ─── Tables ─────────────────────────────────────────── */
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  th {
+    font-size: 10px !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase;
+    color: var(--color-forest) !important;
+  }
+
+  /* ─── Card border normalisation ──────────────────────── */
+  [class*="rounded-3xl"][class*="bg-white"],
+  [class*="rounded-2xl"][class*="bg-white"] {
+    border: 1px solid var(--color-border) !important;
+    box-shadow: none !important;
+  }
+
+  /* ─── Dark section text overrides ────────────────────── */
+  .ds-section-dark [class*="text-gray-"] {
+    color: rgba(255,255,255,0.7) !important;
+  }
+  .ds-section-dark [class*="border-gray-"],
+  .ds-section-dark [class*="border-brand-"] {
+    border-color: rgba(255,255,255,0.12) !important;
+  }
+
+  /* ─── Gradient text → flat green ─────────────────────── */
+  [class*="bg-gradient-to-"][class*="bg-clip-text"] {
+    background: none !important;
+    color: var(--color-primary) !important;
+    -webkit-text-fill-color: var(--color-primary) !important;
+  }
+
+  /* ─── Section vertical rhythm ────────────────────────── */
+  main > section:not(:first-child):not(.no-rhythm) {
+    padding-top: clamp(4rem, 7vw, 7rem) !important;
+    padding-bottom: clamp(4rem, 7vw, 7rem) !important;
+  }
+
+  /* ─── Responsive font scale ──────────────────────────── */
+  @media (max-width: 640px) {
+    h1 { font-size: clamp(2.4rem, 10vw, 3.2rem); }
+    h2 { font-size: clamp(1.8rem, 7vw, 2.4rem);  }
   }
 }

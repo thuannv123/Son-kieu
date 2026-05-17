@@ -9,24 +9,32 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-montserrat)", "system-ui", "sans-serif"],
+        sans:    ["var(--font-montserrat)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Cormorant Garamond", "Georgia", "serif"],
+        cursive: ["Dancing Script", "cursive"],
       },
       colors: {
-        /* Override emerald → green thuần (khớp logo Sơn Kiều) */
-        emerald: {
-          50:  "#f0fdf4",
-          100: "#dcfce7",
-          200: "#bbf7d0",
-          300: "#86efac",
-          400: "#4ade80",
-          500: "#22c55e",   /* vivid green — màu sáng trên logo */
-          600: "#16a34a",
-          700: "#15803d",   /* dark forest green — màu tối trên logo */
-          800: "#166534",
-          900: "#14532d",
-          950: "#052e16",
+        brand: {
+          bg:      "#ffffff",
+          soft:    "#f8fdf9",
+          paper:   "#fff7ed",
+          ink:     "#111827",
+          mid:     "#374151",
+          muted:   "#6b7280",
+          primary: "#16a34a",
+          forest:  "#15803d",
+          deep:    "#14532d",
+          border:  "#e5e7eb",
         },
-        forest: {
+        /* ── Canopy: dark forest sections (Keemala-style dark) ── */
+        canopy: {
+          DEFAULT: "#052e16",
+          mid:     "#073d1e",
+          light:   "#0a5228",
+          text:    "rgba(255,255,255,0.82)",
+        },
+        /* ── Override emerald → Son Kieu forest green ── */
+        emerald: {
           50:  "#f0fdf4",
           100: "#dcfce7",
           200: "#bbf7d0",
@@ -40,9 +48,13 @@ const config: Config = {
           950: "#052e16",
         },
       },
+      /* ── Wave/blob clip paths ── */
+      backgroundImage: {
+        "canopy-gradient": "linear-gradient(180deg, #052e16 0%, #073d1e 100%)",
+      },
       keyframes: {
         fadeUp: {
-          "0%":   { opacity: "0", transform: "translateY(20px)" },
+          "0%":   { opacity: "0", transform: "translateY(24px)" },
           "100%": { opacity: "1", transform: "translateY(0)"    },
         },
         fadeIn: {
@@ -50,26 +62,19 @@ const config: Config = {
           "100%": { opacity: "1" },
         },
         float: {
-          "0%, 100%": { transform: "translateY(0px)"   },
-          "50%":      { transform: "translateY(-12px)" },
+          "0%, 100%": { transform: "translateY(0)"    },
+          "50%":      { transform: "translateY(-10px)" },
         },
         shimmer: {
           "0%":   { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0"  },
         },
-        pulseSlow: {
-          "0%, 100%": { opacity: "0.2" },
-          "50%":      { opacity: "0.6" },
-        },
       },
       animation: {
-        "fade-up":      "fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) both",
-        "fade-up-slow": "fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.15s both",
-        "fade-in":      "fadeIn 0.5s ease-out both",
-        float:          "float 5s ease-in-out infinite",
-        "float-slow":   "float 7s ease-in-out 1.5s infinite",
-        shimmer:        "shimmer 2.5s linear infinite",
-        "pulse-slow":   "pulseSlow 3s ease-in-out infinite",
+        "fade-up":   "fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both",
+        "fade-in":   "fadeIn 0.5s ease-out both",
+        float:       "float 5s ease-in-out infinite",
+        shimmer:     "shimmer 2.5s linear infinite",
       },
     },
   },

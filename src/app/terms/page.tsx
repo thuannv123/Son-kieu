@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PageHero from "@/components/ui/PageHero";
 
 export const metadata: Metadata = {
   title: "Điều Khoản Sử Dụng",
@@ -32,7 +33,7 @@ function Note({ color, icon, children }: { color: "amber" | "emerald" | "blue" |
     red:     "bg-red-50 ring-red-200 text-red-700",
   }[color];
   return (
-    <div className={`flex gap-3 rounded-2xl px-4 py-3.5 ring-1 text-[13.5px] leading-relaxed ${cls}`}>
+    <div className={`flex gap-3 border px-4 py-3.5 text-[13.5px] leading-relaxed ${cls}`}>
       <span className="mt-0.5 shrink-0 text-base">{icon}</span>
       <div>{children}</div>
     </div>
@@ -41,41 +42,24 @@ function Note({ color, icon, children }: { color: "amber" | "emerald" | "blue" |
 
 function Row({ when, refund, color }: { when: string; refund: string; color: string }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-xl bg-gray-50 px-4 py-3 ring-1 ring-gray-100">
+    <div className="flex items-center justify-between gap-4 border border-gray-100 bg-gray-50 px-4 py-3">
       <span className="text-[13px] text-gray-600">{when}</span>
-      <span className={`shrink-0 rounded-full px-3 py-0.5 text-[11px] font-bold ${color}`}>{refund}</span>
+      <span className={`shrink-0 px-3 py-0.5 text-[11px] font-bold ${color}`}>{refund}</span>
     </div>
   );
 }
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-gray-50/50 pt-16">
+    <main className="min-h-screen bg-gray-50/50">
 
-      {/* Hero */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="mx-auto max-w-5xl px-4 py-10 md:px-6">
-          <div className="flex items-center gap-2 text-[12px] text-gray-400 mb-4">
-            <Link href="/" className="hover:text-emerald-600 transition">Trang chủ</Link>
-            <span>/</span>
-            <span className="text-gray-600 font-medium">Điều Khoản Sử Dụng</span>
-          </div>
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-xl">📋</div>
-                <h1 className="text-[28px] font-black text-gray-900 md:text-[34px]">Điều Khoản Sử Dụng</h1>
-              </div>
-              <p className="text-[14px] text-gray-500 max-w-xl">
-                Áp dụng khi quý khách sử dụng dịch vụ đặt vé và tham quan tại Khu Du Lịch Sinh Thái Sơn Kiều.
-              </p>
-            </div>
-            <span className="rounded-full bg-gray-100 px-3 py-1 text-[11px] font-semibold text-gray-500">
-              Cập nhật: Tháng 4 · 2026
-            </span>
-          </div>
-        </div>
-      </div>
+      <PageHero
+        title="Điều Khoản Sử Dụng"
+        eyebrow="Pháp Lý · Sơn Kiều"
+        subtitle="Áp dụng khi quý khách sử dụng dịch vụ đặt vé và tham quan tại Khu Du Lịch Sinh Thái Sơn Kiều."
+        crumbs={[{ label: "Điều Khoản" }]}
+        size="compact"
+      />
 
       {/* Body */}
       <div className="mx-auto max-w-5xl px-4 py-10 md:px-6">
@@ -83,19 +67,19 @@ export default function TermsPage() {
 
           {/* Sidebar TOC */}
           <aside className="hidden lg:block w-52 shrink-0 sticky top-24">
-            <div className="rounded-2xl bg-white p-4 shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+            <div className="border border-gray-200 bg-white p-4">
               <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-gray-400">Nội dung</p>
               <nav className="space-y-1">
                 {TOC.map(item => (
                   <a key={item.id} href={`#${item.id}`}
-                    className="block rounded-lg px-3 py-2 text-[12px] font-medium text-gray-500 transition hover:bg-emerald-50 hover:text-emerald-700">
+                    className="block px-3 py-2 text-[12px] font-medium text-gray-500 transition hover:bg-emerald-50 hover:text-emerald-700">
                     {item.label}
                   </a>
                 ))}
               </nav>
               <div className="mt-4 border-t border-gray-100 pt-4">
                 <Link href="/privacy"
-                  className="flex items-center gap-2 rounded-lg px-3 py-2 text-[12px] font-medium text-gray-400 transition hover:bg-gray-50 hover:text-gray-600">
+                  className="flex items-center gap-2 px-3 py-2 text-[12px] font-medium text-gray-400 transition hover:bg-gray-50 hover:text-gray-600">
                   <span>🔒</span> Chính sách bảo mật
                 </Link>
               </div>
@@ -106,7 +90,7 @@ export default function TermsPage() {
           <div className="min-w-0 flex-1 space-y-5">
 
             {/* Intro */}
-            <div className="rounded-2xl bg-white p-6 shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+            <div className="border border-gray-200 bg-white p-6">
               <p className="text-[14px] leading-relaxed text-gray-600">
                 Các điều khoản này điều chỉnh việc quý khách sử dụng website{" "}
                 <span className="font-semibold text-emerald-700">khudulichsonkieu.vn</span> và dịch vụ đặt vé, tham quan của Khu Du Lịch Sinh Thái Sơn Kiều.
@@ -115,7 +99,7 @@ export default function TermsPage() {
             </div>
 
             {/* 1. Quy định đặt vé */}
-            <section id="dat-ve" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="dat-ve" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="01" />
                 <h2 className="text-[16px] font-bold text-gray-900">Quy Định Đặt Vé</h2>
@@ -144,7 +128,7 @@ export default function TermsPage() {
             </section>
 
             {/* 2. Hủy & hoàn vé */}
-            <section id="huy-hoan" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="huy-hoan" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="02" />
                 <h2 className="text-[16px] font-bold text-gray-900">Chính Sách Hủy & Hoàn Vé</h2>
@@ -172,7 +156,7 @@ export default function TermsPage() {
                 </ul>
 
                 {/* Chuyển khoản */}
-                <div className="rounded-2xl bg-amber-50 ring-1 ring-amber-200 p-5 space-y-3">
+                <div className="border border-amber-200 bg-amber-50 p-5 space-y-3">
                   <div className="flex items-center gap-2">
                     <span className="text-base">⚠️</span>
                     <p className="text-[13px] font-bold text-amber-900">Thanh toán chuyển khoản — liên hệ trong 24 giờ</p>
@@ -187,7 +171,7 @@ export default function TermsPage() {
                       <span><strong>Sau 24 giờ:</strong> không hoàn tiền — chỉ hỗ trợ đổi lịch trong vòng 30 ngày (1 lần, tùy chỗ còn).</span>
                     </div>
                   </div>
-                  <div className="rounded-xl bg-amber-100 px-4 py-3 ring-1 ring-amber-300 flex gap-3 text-[13px] text-amber-900 leading-relaxed">
+                  <div className="border border-amber-300 bg-amber-100 px-4 py-3 flex gap-3 text-[13px] text-amber-900 leading-relaxed">
                     <span className="mt-0.5 shrink-0">🖼️</span>
                     <span>
                       <strong>Bắt buộc để được xét hoàn tiền:</strong> cung cấp ảnh biên lai chuyển khoản thể hiện rõ số tiền, ngân hàng, thời gian và mã giao dịch. Yêu cầu không có bằng chứng sẽ không được xử lý.
@@ -206,7 +190,7 @@ export default function TermsPage() {
             </section>
 
             {/* 3. Trách nhiệm */}
-            <section id="trach-nhiem" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="trach-nhiem" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="03" />
                 <h2 className="text-[16px] font-bold text-gray-900">Trách Nhiệm & Giới Hạn Bồi Thường</h2>
@@ -230,7 +214,7 @@ export default function TermsPage() {
             </section>
 
             {/* 4. An toàn */}
-            <section id="an-toan" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="an-toan" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="04" />
                 <h2 className="text-[16px] font-bold text-gray-900">Quy Định An Toàn</h2>
@@ -259,7 +243,7 @@ export default function TermsPage() {
             </section>
 
             {/* 5. Điều khoản chung */}
-            <section id="chung" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="chung" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="05" />
                 <h2 className="text-[16px] font-bold text-gray-900">Điều Khoản Chung</h2>
@@ -272,7 +256,7 @@ export default function TermsPage() {
                   { title: "Liên kết bên thứ ba", body: "Website có thể chứa liên kết đến trang web bên ngoài. Sơn Kiều không chịu trách nhiệm về nội dung hoặc chính sách bảo mật của các trang đó." },
                   { title: "Ngôn ngữ", body: "Điều khoản soạn thảo bằng tiếng Việt. Bản tiếng Việt có giá trị pháp lý cao hơn bản dịch." },
                 ].map(({ title, body }) => (
-                  <div key={title} className="rounded-xl bg-gray-50 px-4 py-3.5 ring-1 ring-gray-100">
+                  <div key={title} className="border border-gray-100 bg-gray-50 px-4 py-3.5">
                     <p className="text-[12px] font-bold text-gray-700 mb-1">{title}</p>
                     <p className="text-[13px] text-gray-500 leading-relaxed">{body}</p>
                   </div>
@@ -284,16 +268,16 @@ export default function TermsPage() {
             </section>
 
             {/* Contact */}
-            <div className="rounded-2xl bg-emerald-700 p-6 text-white">
+            <div className="bg-[#052e16] p-6 text-white">
               <p className="text-[13px] font-bold text-emerald-200 mb-1">Câu hỏi về điều khoản?</p>
               <h3 className="text-[18px] font-black mb-3">Liên hệ với chúng tôi</h3>
               <div className="flex flex-wrap gap-3">
                 <a href="tel:0857086588"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-[13px] font-semibold hover:bg-white/25 transition">
+                  className="inline-flex items-center gap-2 border border-white/20 bg-white/15 px-4 py-2 text-[13px] font-semibold hover:bg-white/25 transition">
                   📞 0857 086 588
                 </a>
                 <Link href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-[13px] font-semibold hover:bg-white/25 transition">
+                  className="inline-flex items-center gap-2 border border-white/20 bg-white/15 px-4 py-2 text-[13px] font-semibold hover:bg-white/25 transition">
                   Trang liên hệ →
                 </Link>
               </div>

@@ -151,9 +151,10 @@ export default function WeatherWidget({ bgUrl = "", weather }: { bgUrl?: string;
 
         {/* ── Location badge ── */}
         <div className="mb-10 flex justify-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/20
+          <span className="inline-flex items-center gap-2 border border-white/20
                            bg-black/20 px-4 py-1.5 text-[11px] font-bold uppercase
-                           tracking-[0.18em] text-white/80 backdrop-blur-sm">
+                           tracking-[0.18em] text-white/80 backdrop-blur-sm"
+            style={{ borderRadius: 0 }}>
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
             Trường Sơn · Quảng Trị · Thời tiết thực tế
           </span>
@@ -179,24 +180,24 @@ export default function WeatherWidget({ bgUrl = "", weather }: { bgUrl?: string;
 
           {/* Stats row */}
           <div className="mt-5 flex items-center gap-1 text-white/60">
-            <span className="flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5
-                             text-[13px] backdrop-blur-sm">
+            <span className="flex items-center gap-1.5 border border-white/15 bg-white/[0.08] px-3.5 py-1.5
+                             text-[13px] backdrop-blur-sm" style={{ borderRadius: 0 }}>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
               </svg>
               {cur.humidity}%
             </span>
             <span className="mx-1 text-white/25">·</span>
-            <span className="flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5
-                             text-[13px] backdrop-blur-sm">
+            <span className="flex items-center gap-1.5 border border-white/15 bg-white/[0.08] px-3.5 py-1.5
+                             text-[13px] backdrop-blur-sm" style={{ borderRadius: 0 }}>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
               </svg>
               {cur.wind} km/h
             </span>
             <span className="mx-1 text-white/25">·</span>
-            <span className="flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5
-                             text-[13px] backdrop-blur-sm">
+            <span className="flex items-center gap-1.5 border border-white/15 bg-white/[0.08] px-3.5 py-1.5
+                             text-[13px] backdrop-blur-sm" style={{ borderRadius: 0 }}>
               UV thấp
             </span>
           </div>
@@ -209,7 +210,8 @@ export default function WeatherWidget({ bgUrl = "", weather }: { bgUrl?: string;
         <div className="grid grid-cols-7 gap-1.5">
           {forecast.map((day) => (
             <div key={day.date}
-              className={`group flex flex-col items-center gap-1 rounded-2xl py-3
+              style={{ borderRadius: 0 }}
+              className={`group flex flex-col items-center gap-1 py-3
                           backdrop-blur-sm transition-all duration-200
                           hover:-translate-y-1 ${
                 day.isSafe
@@ -230,14 +232,16 @@ export default function WeatherWidget({ bgUrl = "", weather }: { bgUrl?: string;
         </div>
 
         {/* ── Safety + CTA strip ── */}
-        <div className={`mt-4 flex flex-col items-center justify-between gap-4 rounded-2xl
-                         px-6 py-4 backdrop-blur-md sm:flex-row ${
+        <div style={{ borderRadius: 0 }}
+          className={`mt-4 flex flex-col items-center justify-between gap-4
+                       px-6 py-4 backdrop-blur-md sm:flex-row ${
           cur.isSafe
-            ? "bg-emerald-500/[0.15] ring-1 ring-emerald-500/25"
-            : "bg-red-500/[0.15] ring-1 ring-red-500/25"
+            ? "border border-emerald-500/25 bg-emerald-500/[0.15]"
+            : "border border-red-500/25 bg-red-500/[0.15]"
         }`}>
           <div className="flex items-center gap-3">
-            <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl ${
+            <div style={{ borderRadius: 0 }}
+              className={`flex h-9 w-9 flex-shrink-0 items-center justify-center ${
               cur.isSafe ? "bg-emerald-500/25" : "bg-red-500/25"
             }`}>
               {cur.isSafe ? (
@@ -260,10 +264,11 @@ export default function WeatherWidget({ bgUrl = "", weather }: { bgUrl?: string;
             </div>
           </div>
           <Link href="/booking"
-            className={`shrink-0 rounded-xl px-5 py-2.5 text-[13px] font-bold text-white
+            style={{ borderRadius: 0 }}
+            className={`shrink-0 px-5 py-2.5 text-[13px] font-bold text-white
                          transition-all hover:-translate-y-0.5 ${
               cur.isSafe
-                ? "bg-emerald-500 shadow-[0_4px_20px_rgba(16,185,129,0.45)] hover:bg-emerald-400"
+                ? "bg-emerald-500 hover:bg-emerald-400"
                 : "bg-white/15 hover:bg-white/25"
             }`}>
             Đặt vé ngay →

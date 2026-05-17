@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import PageHero from "@/components/ui/PageHero";
 
 type Category = "all" | "cave" | "lake" | "tour" | "food" | "resort";
 
@@ -152,97 +153,35 @@ export default function GalleryPage() {
   return (
     <main className="min-h-screen">
 
-      {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-16"
-        style={{ background: "linear-gradient(160deg,#030f05 0%,#071a0b 55%,#040e06 100%)" }}>
-
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[380px] w-[650px] -translate-x-1/2 -translate-y-1/4 rounded-full blur-[100px]"
-            style={{ background: "radial-gradient(ellipse,rgba(16,185,129,0.12) 0%,transparent 70%)" }} />
-        </div>
-
-        <div className="pointer-events-none absolute inset-0 opacity-[0.025]">
-          <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="gdots" width="32" height="32" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="1" fill="white"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#gdots)" />
-          </svg>
-        </div>
-
-        <div className="relative mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
-          {/* Breadcrumb */}
-          <div className="mb-6 flex items-center gap-2 text-[12px] text-white/40">
-            <Link href="/" className="transition hover:text-white/70">Trang chủ</Link>
-            <span>/</span>
-            <span className="text-white/60">Thư viện ảnh</span>
-          </div>
-
-          <div className="flex flex-col items-start gap-8 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10
-                              bg-white/[0.06] px-4 py-1.5 text-[11px] font-bold uppercase
-                              tracking-[0.18em] text-white/60 backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                Thư viện ảnh · Sơn Kiều
-              </div>
-              <h1 className="text-4xl font-black leading-none text-white md:text-[3.2rem]">
-                Khoảnh Khắc{" "}
-                <span className="bg-gradient-to-r from-emerald-400 to-teal-300
-                                 bg-clip-text text-transparent">
-                  Hoang Sơ
-                </span>
-              </h1>
-              <p className="mt-3 text-[15px] leading-relaxed text-white/50">
-                Hang động huyền bí, hồ suối trong xanh và những trải nghiệm sinh thái không thể quên.
-              </p>
-            </div>
-
-            {!loading && photos.length > 0 && (
-              <div className="flex shrink-0 items-center gap-4">
-                {[
-                  { val: `${photos.length}+`, label: "Hình ảnh" },
-                  { val: `${TABS.length - 1}`, label: "Danh mục" },
-                ].map(({ val, label }) => (
-                  <div key={label} className="flex flex-col items-center rounded-2xl border border-white/[0.08]
-                                              bg-white/[0.04] px-4 py-3 text-center backdrop-blur-sm">
-                    <span className="text-[1.2rem] font-black text-white">{val}</span>
-                    <span className="text-[10px] text-white/40">{label}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-b from-transparent to-white" />
-      </section>
+      <PageHero
+        title="Khoảnh Khắc Hoang Sơ"
+        eyebrow="Thư Viện Ảnh · Sơn Kiều"
+        subtitle="Hang động huyền bí, hồ suối trong xanh và những trải nghiệm sinh thái không thể quên."
+        crumbs={[{ label: "Thư Viện Ảnh" }]}
+        size="compact"
+      />
 
       {/* ── Filter + Grid ── */}
       <div className="bg-white">
         <div className="mx-auto max-w-6xl px-4 pb-20 pt-10 md:px-6">
 
           {/* Filter tabs */}
-          <div className="mb-10 flex flex-wrap gap-2.5">
-            {TABS.map(({ key, label, icon }) => {
+          <div className="mb-10 flex flex-wrap gap-2">
+            {TABS.map(({ key, label }) => {
               const count = key === "all" ? photos.length : photos.filter(p => p.category === key).length;
               return (
                 <button key={key} onClick={() => setActive(key)}
-                  className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[13px]
-                              font-semibold transition-all duration-200 ${
+                  className={`inline-flex items-center gap-2 border px-5 py-2.5 text-[11px]
+                              font-bold uppercase tracking-[0.18em] transition-colors ${
                     active === key
-                      ? "bg-emerald-600 text-white shadow-[0_4px_14px_rgba(16,185,129,0.35)]"
-                      : "bg-gray-50 text-gray-600 ring-1 ring-gray-200 hover:bg-white hover:ring-emerald-300 hover:text-emerald-700"
-                  }`}>
-                  <span>{icon}</span>
+                      ? "border-[#052e16] bg-[#052e16] text-white"
+                      : "border-gray-200 bg-white text-gray-500 hover:border-[#052e16]/40 hover:text-[#052e16]"
+                  }`}
+                  style={{ borderRadius: 0 }}>
                   {label}
-                  {count > 0 && (
-                    <span className={`rounded-full px-1.5 py-0.5 text-[11px] font-bold ${
-                      active === key ? "bg-white/20 text-white" : "bg-gray-200 text-gray-500"
-                    }`}>{count}</span>
-                  )}
+                  <span className={`text-[10px] font-bold ${
+                    active === key ? "text-white/60" : "text-gray-400"
+                  }`}>{count}</span>
                 </button>
               );
             })}
@@ -250,9 +189,9 @@ export default function GalleryPage() {
 
           {/* Grid */}
           {loading ? (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-px bg-gray-100 sm:grid-cols-3 lg:grid-cols-4">
               {[...Array(8)].map((_, i) => (
-                <div key={i} className="aspect-[4/3] animate-pulse rounded-2xl bg-gray-100" />
+                <div key={i} className="aspect-[4/3] animate-pulse bg-gray-100" />
               ))}
             </div>
           ) : visible.length === 0 ? (
@@ -276,14 +215,12 @@ export default function GalleryPage() {
               )}
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-px bg-gray-100 sm:grid-cols-3 lg:grid-cols-4">
               {visible.map((photo) => (
                 <button key={photo.id} onClick={() => openAt(photo)}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100
-                             shadow-[0_2px_12px_rgba(0,0,0,0.08)] ring-1 ring-black/[0.04]
-                             transition-all duration-300 hover:-translate-y-1
-                             hover:shadow-[0_12px_36px_rgba(0,0,0,0.16)]
-                             focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
+                  className="group relative aspect-[4/3] overflow-hidden bg-[#052e16]
+                             transition-all duration-300
+                             focus:outline-none focus-visible:ring-2 focus-visible:ring-[#22c55e]">
                   <Image src={photo.src} alt={photo.label} fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width:640px) 50vw,(max-width:1024px) 33vw,25vw" />

@@ -116,7 +116,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
       {/* Hero */}
       <div className={`relative flex items-end overflow-hidden
         ${activity.image_url ? "h-[56vh] min-h-[320px]" : "h-64"}
-        bg-gradient-to-br from-emerald-900 to-emerald-950`}>
+        bg-[#052e16]`}>
         {activity.image_url && (
           <Image
             src={activity.image_url}
@@ -164,8 +164,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
 
       <div className="mx-auto max-w-4xl px-4 py-10 md:px-6">
         {/* Price + booking */}
-        <div className="mb-8 flex flex-col gap-4 overflow-hidden rounded-3xl bg-white px-6 py-5
-                        shadow-[0_2px_20px_rgba(0,0,0,0.07)] ring-1 ring-black/[0.04]
+        <div className="mb-8 flex flex-col gap-4 overflow-hidden border border-gray-100 bg-white px-6 py-5
                         sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-[12px] text-gray-400">Giá vé</p>
@@ -191,7 +190,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
             <h2 className="mb-3 text-xl font-bold text-gray-900">✨ Điểm Nổi Bật</h2>
             <ul className="grid gap-2 sm:grid-cols-3">
               {activity.highlights.map((h: string) => (
-                <li key={h} className="flex items-center gap-2 rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+                <li key={h} className="flex items-center gap-2 border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
                   <span className="text-base">✓</span> {h}
                 </li>
               ))}
@@ -211,7 +210,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
 
         {/* Safety */}
         {activity.safety_guideline && (
-          <section className="mb-10 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+          <section className="mb-10 border border-amber-200 bg-amber-50 p-5">
             <h2 className="mb-3 text-lg font-bold text-amber-800">⚠️ Hướng Dẫn An Toàn</h2>
             <p className="whitespace-pre-line text-sm leading-relaxed text-amber-700">
               {activity.safety_guideline}

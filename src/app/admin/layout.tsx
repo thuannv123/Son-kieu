@@ -120,14 +120,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const displayRole = me ? ROLE_LABEL[me.role] ?? me.role : "";
 
   return (
-    <div className="flex min-h-screen bg-[#f0f4f3]">
+    <div className="flex min-h-screen bg-brand-paper">
 
       {/* ── Sidebar ──────────────────────────────────────────────── */}
-      <aside className="flex w-60 shrink-0 flex-col bg-[#0d1117]">
+      <aside className="flex w-60 shrink-0 flex-col border-r border-brand-border bg-white">
 
         {/* Logo */}
-        <div className="flex h-16 items-center gap-3 px-5 border-b border-white/[0.06]">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500 shadow-lg shadow-emerald-900/40">
+        <div className="flex h-16 items-center gap-3 border-b border-brand-border px-5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-[7px] bg-emerald-500">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M17 3C17 3 10 5 7 12C5 17 8 21 12 21C16 21 19 17 19 13C19 9 16 7 13 8C11 8.5 10 10 11 12C12 14 15 13 15 11"
                 stroke="white" strokeWidth="2" strokeLinecap="round"/>
@@ -135,8 +135,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </svg>
           </div>
           <div>
-            <p className="text-[14px] font-black text-white tracking-tight">Sơn Kiều</p>
-            <p className="text-[10px] text-emerald-500/70 font-medium">Admin Panel</p>
+            <p className="font-display text-[18px] font-normal tracking-[0.04em] text-gray-950">Sơn Kiều</p>
+            <p className="text-[10px] font-medium text-emerald-700">Admin Panel</p>
           </div>
         </div>
 
@@ -144,7 +144,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-6">
           {navGroups.map((group) => (
             <div key={group.label}>
-              <p className="mb-1.5 px-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gray-600">
+              <p className="mb-1.5 px-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400">
                 {group.label}
               </p>
               <div className="space-y-0.5">
@@ -152,17 +152,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   const active = pathname.startsWith(href);
                   return (
                     <Link key={href} href={href}
-                      className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium transition-all duration-150 ${
+                      className={`group flex items-center gap-3 rounded-[7px] px-3 py-2.5 text-[13px] font-medium transition-all duration-150 ${
                         active
-                          ? "bg-emerald-500/15 text-emerald-400"
-                          : "text-gray-500 hover:bg-white/[0.05] hover:text-gray-200"
+                          ? "bg-emerald-50 text-emerald-700"
+                          : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                       }`}>
-                      <span className={`transition-colors ${active ? "text-emerald-400" : "text-gray-600 group-hover:text-gray-300"}`}>
+                      <span className={`transition-colors ${active ? "text-emerald-700" : "text-gray-400 group-hover:text-gray-700"}`}>
                         {icon}
                       </span>
                       <span>{label}</span>
                       {active && (
-                        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-emerald-500" />
                       )}
                     </Link>
                   );
@@ -173,19 +173,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
 
         {/* User + logout */}
-        <div className="border-t border-white/[0.06] px-3 pb-4 pt-3 space-y-0.5">
-          <div className="flex items-center gap-3 rounded-lg px-3 py-2.5">
-            <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-[11px] font-black text-white">
+        <div className="space-y-0.5 border-t border-brand-border px-3 pb-4 pt-3">
+          <div className="flex items-center gap-3 rounded-[7px] px-3 py-2.5">
+            <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-[7px] bg-emerald-500 text-[11px] font-semibold text-white">
               {initials(displayName)}
-              <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-[#0d1117] bg-emerald-400" />
+              <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-emerald-400" />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-[12px] font-semibold text-white truncate">{displayName}</p>
+              <p className="truncate text-[12px] font-semibold text-gray-900">{displayName}</p>
               <p className="text-[10px] text-emerald-500/60 truncate">{displayRole}</p>
             </div>
           </div>
           <button onClick={logout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-[12px] text-gray-600 transition hover:bg-white/[0.05] hover:text-gray-300">
+            className="flex w-full items-center gap-3 rounded-[7px] px-3 py-2 text-[12px] text-gray-500 transition hover:bg-gray-50 hover:text-gray-900">
             {I.logout}
             Đăng xuất
           </button>
@@ -196,9 +196,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="flex flex-1 flex-col overflow-hidden">
 
         {/* Top bar */}
-        <header className="flex h-16 items-center justify-between bg-white px-7 shadow-[0_1px_0_#e5e7eb]">
+        <header className="flex h-16 items-center justify-between border-b border-brand-border bg-white px-7 shadow-none">
           <div>
-            <h1 className="text-[15px] font-bold text-gray-900 leading-tight">{page.title}</h1>
+            <h1 className="font-display text-[22px] font-normal leading-tight tracking-[0.03em] text-gray-900">{page.title}</h1>
             {page.sub && <p className="text-[11px] text-gray-400 mt-0.5">{page.sub}</p>}
           </div>
           <div className="flex items-center gap-4">
@@ -212,7 +212,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 {new Date().toLocaleDateString("vi-VN", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}
               </span>
             </div>
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-[11px] font-black text-white">
+            <div className="flex h-8 w-8 items-center justify-center rounded-[7px] bg-emerald-500 text-[11px] font-semibold text-white">
               {initials(displayName)}
             </div>
           </div>

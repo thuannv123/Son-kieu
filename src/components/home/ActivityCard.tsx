@@ -55,15 +55,12 @@ export default function ActivityCard({
   const fullStars = Math.floor(activity.rating);
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-3xl bg-white
-                        shadow-[0_2px_16px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.05]
-                        transition-all duration-300 hover:-translate-y-2
-                        hover:shadow-[0_20px_60px_rgba(0,0,0,0.13)]
-                        hover:ring-emerald-200/60">
+    <article className="group flex flex-col overflow-hidden border border-gray-100 bg-white
+                        shadow-none ring-0 transition-all duration-300 hover:-translate-y-1
+                        hover:border-emerald-200/80">
 
       {/* ── Cover ── */}
-      <Link href={detail} className="relative block h-60 overflow-hidden bg-gradient-to-br"
-        style={{ background: undefined }}>
+      <Link href={detail} className="relative block h-60 overflow-hidden">
         <div className={`absolute inset-0 bg-gradient-to-br ${activity.coverGradient}`} />
         {activity.image_url && (
           <Image
@@ -74,40 +71,42 @@ export default function ActivityCard({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         )}
-        {/* Layered gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/12 to-black/4" />
 
-        {/* Top-left badges */}
+        {/* Badges top-left */}
         <div className="absolute left-3 top-3 flex flex-wrap items-center gap-1.5">
-          <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold backdrop-blur-sm ${cat.color}`}>
+          <span className={`px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] backdrop-blur-sm ${cat.color}`}
+                style={{ borderRadius: 0 }}>
             {cat.icon} {cat.label}
           </span>
           {diff && (
-            <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold backdrop-blur-sm ${diff.color}`}>
+            <span className={`px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] backdrop-blur-sm ${diff.color}`}
+                  style={{ borderRadius: 0 }}>
               {activity.difficultyLevel}
             </span>
           )}
         </div>
 
-        {/* Top-right: bestseller */}
+        {/* Popular badge top-right */}
         {featured && (
           <div className="absolute right-3 top-3">
-            <span className="flex items-center gap-1 rounded-full bg-amber-400 px-2.5 py-0.5
-                             text-[10px] font-black text-amber-900 shadow-sm">
+            <span className="flex items-center gap-1 bg-amber-400 px-2.5 py-0.5
+                             text-[10px] font-semibold uppercase tracking-[0.08em] text-amber-900"
+                  style={{ borderRadius: 0 }}>
               ★ Phổ biến nhất
             </span>
           </div>
         )}
 
-        {/* Bottom: title + duration */}
-        <div className="absolute inset-x-0 bottom-0 p-4">
+        {/* Title + duration at bottom */}
+        <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="flex items-end justify-between gap-2">
-            <h3 className="text-[15px] font-black leading-tight text-white drop-shadow
-                           transition-colors duration-200 line-clamp-2">
+            <h3 className="font-display text-[20px] font-normal leading-tight tracking-[0.03em] text-white drop-shadow line-clamp-2">
               {activity.name}
             </h3>
-            <div className="flex shrink-0 items-center gap-1 rounded-full
-                            bg-black/40 px-2.5 py-1 text-[11px] text-white backdrop-blur-sm">
+            <div className="flex shrink-0 items-center gap-1
+                            bg-black/40 px-2.5 py-1 text-[10px] text-white backdrop-blur-sm"
+              style={{ borderRadius: 0 }}>
               <ClockIcon />
               <span>{activity.durationMinutes} phút</span>
             </div>
@@ -115,11 +114,12 @@ export default function ActivityCard({
         </div>
 
         {/* Hover overlay CTA */}
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20
+        <div className="absolute inset-0 flex items-center justify-center bg-black/18
                         opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="flex items-center gap-2 rounded-full bg-white/95 px-5 py-2.5
-                           text-[13px] font-bold text-gray-800 shadow-lg backdrop-blur-sm
-                           translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+          <span className="flex items-center gap-2 bg-white/95 px-5 py-2.5
+                           text-[13px] font-semibold text-gray-800 backdrop-blur-sm
+                           translate-y-2 transition-transform duration-300 group-hover:translate-y-0"
+                style={{ borderRadius: 0 }}>
             Xem chi tiết <ArrowRight />
           </span>
         </div>
@@ -135,11 +135,10 @@ export default function ActivityCard({
         {/* Highlights */}
         {activity.highlights.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-1.5">
-            {activity.highlights.slice(0, 2).map((h) => (
-              <span key={h} className="inline-flex items-center gap-1 rounded-full
-                                       bg-emerald-50 px-2.5 py-1
-                                       text-[11px] font-medium text-emerald-700
-                                       ring-1 ring-emerald-100">
+            {activity.highlights.slice(0, 2).map(h => (
+              <span key={h} className="inline-flex items-center gap-1
+                                       border border-emerald-100 bg-emerald-50 px-2.5 py-1
+                                       text-[11px] font-medium text-emerald-700">
                 <CheckIcon />
                 {h}
               </span>
@@ -148,7 +147,7 @@ export default function ActivityCard({
         )}
 
         {/* Rating */}
-        <div className="mt-3.5 flex items-center gap-1.5">
+        <div className="mt-4 flex items-center gap-1.5">
           <div className="flex items-center gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
               <StarIcon key={i} filled={i < fullStars} />
@@ -158,22 +157,25 @@ export default function ActivityCard({
           <span className="text-[11px] text-gray-400">({activity.reviewCount} đánh giá)</span>
         </div>
 
-        {/* Price + CTA */}
-        <div className="mt-auto flex items-center justify-between border-t border-gray-50 pt-4 mt-4">
+        {/* Price + CTA — Keemala sharp button */}
+        <div className="mt-auto flex items-center justify-between border-t border-gray-100 pt-4 mt-4">
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400">Giá từ</p>
-            <p className="text-[19px] font-black leading-tight text-emerald-700">
+            <p className="font-display text-[23px] font-normal leading-tight tracking-[0.03em] text-emerald-700">
               {new Intl.NumberFormat("vi-VN").format(activity.price)}
               <span className="text-[12px] font-normal text-gray-400">đ</span>
             </p>
             <p className="text-[10px] text-gray-400">/ khách</p>
           </div>
-          <Link href={detail}
-            className="inline-flex items-center gap-1.5 rounded-full
-                       bg-emerald-600 px-5 py-2.5 text-[13px] font-bold text-white
-                       transition-all duration-200 hover:bg-emerald-500 hover:gap-2.5
-                       shadow-[0_4px_14px_rgba(16,185,129,0.30)]
-                       hover:shadow-[0_6px_22px_rgba(16,185,129,0.45)]">
+          {/* Sharp button — Keemala btn-filled style with green */}
+          <Link
+            href={detail}
+            className="inline-flex items-center gap-1.5 border border-emerald-600
+                       bg-emerald-600 px-5 py-2.5 text-[12px] font-semibold uppercase
+                       tracking-[0.12em] text-white transition-all duration-200
+                       hover:bg-emerald-700 hover:gap-2.5"
+            style={{ borderRadius: 0 }}
+          >
             Đặt ngay
             <ArrowRight />
           </Link>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PageHero from "@/components/ui/PageHero";
 
 export const metadata: Metadata = {
   title: "Chính Sách Bảo Mật",
@@ -32,7 +33,7 @@ function Note({ color, icon, children }: { color: "amber" | "emerald" | "blue"; 
     blue:    "bg-blue-50 ring-blue-200 text-blue-800",
   }[color];
   return (
-    <div className={`flex gap-3 rounded-2xl px-4 py-3.5 ring-1 text-[13.5px] leading-relaxed ${cls}`}>
+    <div className={`flex gap-3 border px-4 py-3.5 text-[13.5px] leading-relaxed ${cls}`}>
       <span className="mt-0.5 shrink-0 text-base">{icon}</span>
       <div>{children}</div>
     </div>
@@ -41,7 +42,7 @@ function Note({ color, icon, children }: { color: "amber" | "emerald" | "blue"; 
 
 function DataItem({ icon, title, body }: { icon: string; title: string; body: string }) {
   return (
-    <div className="flex gap-3 rounded-xl bg-gray-50 px-4 py-3.5 ring-1 ring-gray-100">
+    <div className="flex gap-3 border border-gray-100 bg-gray-50 px-4 py-3.5">
       <span className="mt-0.5 text-base shrink-0">{icon}</span>
       <div>
         <p className="text-[12px] font-bold text-gray-700 mb-0.5">{title}</p>
@@ -53,32 +54,15 @@ function DataItem({ icon, title, body }: { icon: string; title: string; body: st
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-gray-50/50 pt-16">
+    <main className="min-h-screen bg-gray-50/50">
 
-      {/* Hero */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="mx-auto max-w-5xl px-4 py-10 md:px-6">
-          <div className="flex items-center gap-2 text-[12px] text-gray-400 mb-4">
-            <Link href="/" className="hover:text-blue-600 transition">Trang chủ</Link>
-            <span>/</span>
-            <span className="text-gray-600 font-medium">Chính Sách Bảo Mật</span>
-          </div>
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-xl">🔒</div>
-                <h1 className="text-[28px] font-black text-gray-900 md:text-[34px]">Chính Sách Bảo Mật</h1>
-              </div>
-              <p className="text-[14px] text-gray-500 max-w-xl">
-                Cam kết bảo vệ quyền riêng tư và thông tin cá nhân của quý khách khi sử dụng dịch vụ của Sơn Kiều.
-              </p>
-            </div>
-            <span className="rounded-full bg-gray-100 px-3 py-1 text-[11px] font-semibold text-gray-500">
-              Cập nhật: Tháng 4 · 2026
-            </span>
-          </div>
-        </div>
-      </div>
+      <PageHero
+        title="Chính Sách Bảo Mật"
+        eyebrow="Bảo Mật · Sơn Kiều"
+        subtitle="Cam kết bảo vệ quyền riêng tư và thông tin cá nhân của quý khách khi sử dụng dịch vụ của Sơn Kiều."
+        crumbs={[{ label: "Chính Sách Bảo Mật" }]}
+        size="compact"
+      />
 
       {/* Body */}
       <div className="mx-auto max-w-5xl px-4 py-10 md:px-6">
@@ -86,19 +70,19 @@ export default function PrivacyPage() {
 
           {/* Sidebar TOC */}
           <aside className="hidden lg:block w-52 shrink-0 sticky top-24">
-            <div className="rounded-2xl bg-white p-4 shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+            <div className="border border-gray-200 bg-white p-4">
               <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-gray-400">Nội dung</p>
               <nav className="space-y-1">
                 {TOC.map(item => (
                   <a key={item.id} href={`#${item.id}`}
-                    className="block rounded-lg px-3 py-2 text-[12px] font-medium text-gray-500 transition hover:bg-blue-50 hover:text-blue-700">
+                    className="block px-3 py-2 text-[12px] font-medium text-gray-500 transition hover:bg-blue-50 hover:text-blue-700">
                     {item.label}
                   </a>
                 ))}
               </nav>
               <div className="mt-4 border-t border-gray-100 pt-4">
                 <Link href="/terms"
-                  className="flex items-center gap-2 rounded-lg px-3 py-2 text-[12px] font-medium text-gray-400 transition hover:bg-gray-50 hover:text-gray-600">
+                  className="flex items-center gap-2 px-3 py-2 text-[12px] font-medium text-gray-400 transition hover:bg-gray-50 hover:text-gray-600">
                   <span>📋</span> Điều khoản sử dụng
                 </Link>
               </div>
@@ -109,7 +93,7 @@ export default function PrivacyPage() {
           <div className="min-w-0 flex-1 space-y-5">
 
             {/* Intro */}
-            <div className="rounded-2xl bg-white p-6 shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+            <div className="border border-gray-200 bg-white p-6">
               <p className="text-[14px] leading-relaxed text-gray-600">
                 Khu Du Lịch Sinh Thái Sơn Kiều xây dựng chính sách này nhằm giải thích rõ cách chúng tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin cá nhân của quý khách khi sử dụng{" "}
                 <span className="font-semibold text-blue-700">khudulichsonkieu.vn</span> và dịch vụ đặt vé trực tuyến.
@@ -118,7 +102,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* 1. Thu thập */}
-            <section id="thu-thap" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="thu-thap" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="01" />
                 <h2 className="text-[16px] font-bold text-gray-900">Thu Thập Thông Tin</h2>
@@ -139,7 +123,7 @@ export default function PrivacyPage() {
             </section>
 
             {/* 2. Sử dụng */}
-            <section id="su-dung" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="su-dung" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="02" />
                 <h2 className="text-[16px] font-bold text-gray-900">Sử Dụng Thông Tin</h2>
@@ -164,7 +148,7 @@ export default function PrivacyPage() {
             </section>
 
             {/* 3. Bảo mật */}
-            <section id="bao-mat" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="bao-mat" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="03" />
                 <h2 className="text-[16px] font-bold text-gray-900">Bảo Mật Thông Tin</h2>
@@ -177,7 +161,7 @@ export default function PrivacyPage() {
                     { icon: "🗄️", title: "Quyền truy cập hạn chế", body: "Chỉ nhân viên có thẩm quyền mới được phép xem dữ liệu khách hàng." },
                     { icon: "💾", title: "Sao lưu định kỳ", body: "Dữ liệu sao lưu thường xuyên với quy trình ứng phó sự cố sẵn sàng." },
                   ].map(({ icon, title, body }) => (
-                    <div key={title} className="rounded-xl bg-gray-50 px-4 py-3.5 ring-1 ring-gray-100">
+                    <div key={title} className="border border-gray-100 bg-gray-50 px-4 py-3.5">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-sm">{icon}</span>
                         <p className="text-[12px] font-bold text-gray-700">{title}</p>
@@ -193,7 +177,7 @@ export default function PrivacyPage() {
             </section>
 
             {/* 4. Cookies */}
-            <section id="cookies" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="cookies" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="04" />
                 <h2 className="text-[16px] font-bold text-gray-900">Cookies & Công Nghệ Theo Dõi</h2>
@@ -204,10 +188,10 @@ export default function PrivacyPage() {
                   { type: "Phân tích", icon: "📊", color: "bg-blue-100 text-blue-700", body: "Google Analytics giúp hiểu cách khách sử dụng website. Dữ liệu được ẩn danh hóa." },
                   { type: "Tiếp thị", icon: "📣", color: "bg-purple-100 text-purple-700", body: "Facebook Pixel để hiển thị quảng cáo phù hợp. Quý khách có thể từ chối loại cookies này." },
                 ].map(({ type, icon, color, body }) => (
-                  <div key={type} className="flex gap-3 rounded-xl bg-gray-50 px-4 py-3.5 ring-1 ring-gray-100">
+                  <div key={type} className="flex gap-3 border border-gray-100 bg-gray-50 px-4 py-3.5">
                     <span className="mt-0.5 text-base shrink-0">{icon}</span>
                     <div className="min-w-0">
-                      <span className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold mb-1 ${color}`}>{type}</span>
+                      <span className={`inline-block px-2.5 py-0.5 text-[10px] font-bold mb-1 ${color}`} style={{ borderRadius: 0 }}>{type}</span>
                       <p className="text-[13px] text-gray-500 leading-relaxed">{body}</p>
                     </div>
                   </div>
@@ -219,7 +203,7 @@ export default function PrivacyPage() {
             </section>
 
             {/* 5. Quyền */}
-            <section id="quyen" className="rounded-2xl bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] overflow-hidden">
+            <section id="quyen" className="overflow-hidden border border-gray-200 bg-white">
               <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
                 <Chip n="05" />
                 <h2 className="text-[16px] font-bold text-gray-900">Quyền Của Quý Khách</h2>
@@ -233,7 +217,7 @@ export default function PrivacyPage() {
                     { icon: "🚫", title: "Quyền phản đối", body: "Hạn chế hoặc phản đối việc xử lý dữ liệu cá nhân của mình." },
                     { icon: "📧", title: "Hủy nhận email", body: "Hủy đăng ký nhận email marketing bất kỳ lúc nào qua link trong email." },
                   ].map(({ icon, title, body }) => (
-                    <div key={title} className="flex gap-3 rounded-xl bg-gray-50 px-4 py-3.5 ring-1 ring-gray-100">
+                    <div key={title} className="flex gap-3 border border-gray-100 bg-gray-50 px-4 py-3.5">
                       <span className="mt-0.5 text-base shrink-0">{icon}</span>
                       <div>
                         <p className="text-[12px] font-bold text-gray-700 mb-0.5">{title}</p>
@@ -249,7 +233,7 @@ export default function PrivacyPage() {
             </section>
 
             {/* 6. Liên hệ */}
-            <section id="lien-he" className="rounded-2xl bg-blue-700 p-6 text-white">
+            <section id="lien-he" className="bg-[#052e16] p-6 text-white">
               <div className="flex items-center gap-3 mb-4">
                 <Chip n="06" />
                 <h2 className="text-[16px] font-bold">Liên Hệ</h2>
@@ -270,7 +254,7 @@ export default function PrivacyPage() {
               </div>
               <div className="flex flex-wrap gap-3">
                 <a href="tel:0857086588"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-[13px] font-semibold hover:bg-white/25 transition">
+                  className="inline-flex items-center gap-2 border border-white/20 bg-white/15 px-4 py-2 text-[13px] font-semibold hover:bg-white/25 transition">
                   📞 0857 086 588
                 </a>
               </div>

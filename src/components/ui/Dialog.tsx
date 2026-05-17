@@ -39,35 +39,37 @@ export default function Dialog({
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
       onClick={onClose}>
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
-      {/* Panel */}
+      {/* Panel — Keemala: 35px radius card */}
       <div
-        className="relative w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/[0.06]"
-        onClick={e => e.stopPropagation()}>
-
+        className="relative w-full max-w-sm overflow-hidden border border-brand-border bg-white shadow-none ring-0"
+        style={{ borderRadius: "35px" }}
+        onClick={e => e.stopPropagation()}
+      >
         {/* Icon + title */}
-        <div className="px-6 pt-6 pb-4">
-          <div className={`mb-4 flex h-11 w-11 items-center justify-center rounded-2xl ${
+        <div className="px-6 pt-7 pb-4">
+          <div className={`mb-5 flex h-10 w-10 items-center justify-center ${
             isAlert
               ? "bg-blue-50"
               : danger ? "bg-red-50" : "bg-emerald-50"
-          }`}>
+          }`}
+          style={{ borderRadius: "35px" }}>
             {isAlert ? (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke={danger ? "#ef4444" : "#3b82f6"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="12" y1="8" x2="12" y2="12"/>
                 <line x1="12" y1="16" x2="12.01" y2="16"/>
               </svg>
             ) : danger ? (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="3 6 5 6 21 6"/>
                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
               </svg>
             ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="12" y1="8" x2="12" y2="12"/>
@@ -77,26 +79,36 @@ export default function Dialog({
           </div>
 
           {title && (
-            <p className="mb-1.5 text-[15px] font-bold text-gray-900">{title}</p>
+            <p className="mb-1.5 font-display text-[17px] font-normal tracking-[0.03em] text-gray-900">
+              {title}
+            </p>
           )}
-          <p className="text-[13px] leading-relaxed text-gray-500 whitespace-pre-line">{message}</p>
+          <p className="text-[13px] leading-relaxed text-gray-500 whitespace-pre-line">
+            {message}
+          </p>
         </div>
 
-        {/* Actions */}
-        <div className={`flex gap-2 border-t border-gray-100 px-6 py-4 ${isAlert ? "justify-end" : "justify-end"}`}>
+        {/* Actions — Keemala sharp buttons */}
+        <div className="flex justify-end gap-2 border-t border-gray-100 px-6 py-4">
           {!isAlert && (
-            <button onClick={onClose}
-              className="rounded-xl border border-gray-200 px-5 py-2 text-[13px] font-semibold
-                         text-gray-700 transition hover:bg-gray-50">
+            <button
+              onClick={onClose}
+              className="border border-gray-200 px-5 py-2 text-[12px] font-semibold
+                         uppercase tracking-[0.12em] text-gray-700 transition hover:bg-gray-50"
+              style={{ borderRadius: 0 }}
+            >
               {cancelLabel}
             </button>
           )}
-          <button onClick={() => { onConfirm(); onClose(); }}
-            className={`rounded-xl px-5 py-2 text-[13px] font-semibold text-white transition ${
+          <button
+            onClick={() => { onConfirm(); onClose(); }}
+            className={`px-5 py-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-white transition ${
               danger
                 ? "bg-red-500 hover:bg-red-600"
                 : "bg-emerald-600 hover:bg-emerald-700"
-            }`}>
+            }`}
+            style={{ borderRadius: 0 }}
+          >
             {label}
           </button>
         </div>
