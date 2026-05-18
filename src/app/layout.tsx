@@ -60,8 +60,11 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE },
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
+    icon: [
+      { url: "/icon.png", type: "image/png", sizes: "500x500" },
+    ],
+    shortcut: [{ url: "/icon.png", type: "image/png" }],
+    apple:    [{ url: "/icon.png", type: "image/png", sizes: "500x500" }],
   },
   authors: [{ name: "Khu Du Lịch Sinh Thái Sơn Kiều", url: SITE }],
   creator: "Khu Du Lịch Sinh Thái Sơn Kiều",
