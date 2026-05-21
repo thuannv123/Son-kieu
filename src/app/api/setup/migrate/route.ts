@@ -32,6 +32,7 @@ export async function GET(req: NextRequest) {
       ALTER TABLE activities ADD COLUMN IF NOT EXISTS image_url text;
       ALTER TABLE dishes     ADD COLUMN IF NOT EXISTS image_url text;
       ALTER TABLE posts      ADD COLUMN IF NOT EXISTS cover_image text;
+      ALTER TABLE posts      ADD COLUMN IF NOT EXISTS cover_image_alt text;
     `);
     log.push("✓ Migration 004: image columns added");
 

@@ -136,7 +136,7 @@ export default async function HomePage() {
       .order("name"),
     supabaseAdmin
       .from("posts")
-      .select("id,title,slug,excerpt,category,author,published_at,cover_image")
+      .select("id,title,slug,excerpt,category,author,published_at,cover_image,cover_image_alt")
       .eq("is_published", true)
       .order("published_at", { ascending: false })
       .limit(4),

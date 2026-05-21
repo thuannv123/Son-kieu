@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json();
-  const { title, excerpt, content, category, author, cover_image, is_published, seo_keywords, event_date } = body;
+  const { title, excerpt, content, category, author, cover_image, cover_image_alt, is_published, seo_keywords, event_date } = body;
 
   if (!title) return NextResponse.json({ error: "Tiêu đề không được để trống" }, { status: 400 });
 
@@ -47,11 +47,12 @@ export async function POST(req: NextRequest) {
       content:      content      ?? "",
       category:     category     ?? "news",
       author:       author       ?? "Sơn Kiều",
-      cover_image:  cover_image  ?? null,
-      seo_keywords: seo_keywords ?? "",
-      is_published: is_published ?? false,
-      published_at: is_published ? new Date().toISOString() : null,
-      event_date:   event_date   ? new Date(event_date).toISOString() : null,
+      cover_image:     cover_image     ?? null,
+      cover_image_alt: cover_image_alt ?? "",
+      seo_keywords:    seo_keywords    ?? "",
+      is_published:    is_published    ?? false,
+      published_at:    is_published ? new Date().toISOString() : null,
+      event_date:      event_date   ? new Date(event_date).toISOString() : null,
     })
     .select()
     .single();

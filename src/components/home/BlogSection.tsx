@@ -4,6 +4,7 @@ import Image from "next/image";
 interface Post {
   id:           string;
   cover_image?: string | null;
+  cover_image_alt?: string | null;
   title:        string;
   slug:         string;
   excerpt:      string | null;
@@ -75,7 +76,7 @@ export default function BlogSection({ posts }: { posts: Post[] }) {
             {/* Cover */}
             <div className="relative h-80 overflow-hidden bg-[#052e16]">
               {featured.cover_image && (
-                <Image src={featured.cover_image} alt={featured.title} fill
+                <Image src={featured.cover_image} alt={featured.cover_image_alt || featured.title} fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 60vw" />
               )}
@@ -137,7 +138,7 @@ export default function BlogSection({ posts }: { posts: Post[] }) {
                 {/* Thumbnail */}
                 <div className="relative w-28 shrink-0 overflow-hidden bg-[#052e16]">
                   {post.cover_image && (
-                    <Image src={post.cover_image} alt={post.title} fill
+                    <Image src={post.cover_image} alt={post.cover_image_alt || post.title} fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="112px" />
                   )}

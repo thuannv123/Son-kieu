@@ -121,6 +121,7 @@ interface Post {
   seo_keywords: string;
   is_published: boolean;
   cover_image:  string;
+  cover_image_alt: string;
   event_date:   string | null;
 }
 
@@ -144,6 +145,7 @@ export default function EditPostPage() {
     seo_keywords: "",
     is_published: false,
     cover_image:  "",
+    cover_image_alt: "",
     event_date:   "",
   });
 
@@ -165,6 +167,7 @@ export default function EditPostPage() {
             seo_keywords: p.seo_keywords ?? "",
             is_published: p.is_published,
             cover_image:  p.cover_image ?? "",
+            cover_image_alt: p.cover_image_alt ?? "",
             event_date:   p.event_date ? new Date(p.event_date).toISOString().slice(0, 16) : "",
           });
         }
@@ -254,6 +257,15 @@ export default function EditPostPage() {
               folder="posts"
               label="Ảnh bìa bài viết"
             />
+
+            <Field label="Alt ảnh bìa">
+              <input className={INPUT} value={form.cover_image_alt}
+                onChange={e => set("cover_image_alt", e.target.value)}
+                placeholder="VD: Hồ suối Sơn Kiều mùa hè tại Quảng Trị" />
+              <p className="mt-1.5 text-[11px] text-gray-400">
+                Nên mô tả đúng nội dung ảnh, có thể kèm địa danh nếu tự nhiên.
+              </p>
+            </Field>
 
             <Field label="Tiêu đề *">
               <input className={INPUT} value={form.title} required

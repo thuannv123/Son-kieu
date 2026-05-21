@@ -13,6 +13,7 @@ export interface CmsEvent {
   slug: string;
   excerpt: string;
   coverImage: string | null;
+  coverImageAlt: string | null;
   eventDate: string | null;
   status: EventStatus;
 }
@@ -206,7 +207,7 @@ function EventCard({ event }: { event: CmsEvent }) {
       {/* Cover image */}
       <div className="relative h-44 overflow-hidden bg-[#052e16]">
         {event.coverImage ? (
-          <Image src={event.coverImage} alt={event.title} fill
+          <Image src={event.coverImage} alt={event.coverImageAlt || event.title} fill
             className="object-cover transition duration-500 group-hover:scale-105" />
         ) : (
           <div className="flex h-full items-center justify-center text-5xl opacity-30">🎉</div>

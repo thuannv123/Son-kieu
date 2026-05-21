@@ -20,7 +20,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
 
   const { id }  = await params;
   const body    = await req.json();
-  const allowed = ["title","slug","excerpt","content","category","author","cover_image","is_published","seo_keywords","event_date"] as const;
+  const allowed = ["title","slug","excerpt","content","category","author","cover_image","cover_image_alt","is_published","seo_keywords","event_date"] as const;
 
   const update: Record<string, unknown> = {};
   for (const key of allowed) {

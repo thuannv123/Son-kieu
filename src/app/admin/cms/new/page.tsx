@@ -123,6 +123,7 @@ export default function NewPostPage() {
     seo_keywords: "",
     is_published: false,
     cover_image:  "",
+    cover_image_alt: "",
     event_date:   "",
   });
 
@@ -175,6 +176,15 @@ export default function NewPostPage() {
               folder="posts"
               label="Ảnh bìa bài viết"
             />
+
+            <Field label="Alt ảnh bìa">
+              <input className={INPUT} value={form.cover_image_alt}
+                onChange={e => set("cover_image_alt", e.target.value)}
+                placeholder="VD: Gia đình tắm suối tại Khu Du Lịch Sinh Thái Sơn Kiều mùa hè" />
+              <p className="mt-1.5 text-[11px] text-gray-400">
+                Mô tả ngắn nội dung ảnh cho Google và người dùng dùng trình đọc màn hình.
+              </p>
+            </Field>
 
             <Field label="Tiêu đề *">
               <input className={INPUT} value={form.title} required

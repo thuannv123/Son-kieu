@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function EventsPage() {
   const { data } = await supabaseAdmin
     .from("posts")
-    .select("id,title,slug,excerpt,cover_image,event_date")
+    .select("id,title,slug,excerpt,cover_image,cover_image_alt,event_date")
     .eq("category", "event")
     .eq("is_published", true)
     .order("event_date", { ascending: true, nullsFirst: false });
@@ -27,6 +27,7 @@ export default async function EventsPage() {
     slug:       p.slug as string,
     excerpt:    (p.excerpt ?? "") as string,
     coverImage: (p.cover_image ?? null) as string | null,
+    coverImageAlt: (p.cover_image_alt ?? null) as string | null,
     eventDate:  (p.event_date ?? null) as string | null,
     status:     (p.event_date && new Date(p.event_date) <= now
                   ? "past"

@@ -38,7 +38,7 @@ export default async function BlogPage({
 
   let query = supabaseAdmin
     .from("posts")
-    .select("id,title,slug,excerpt,category,author,published_at,cover_image")
+    .select("id,title,slug,excerpt,category,author,published_at,cover_image,cover_image_alt")
     .eq("is_published", true)
     .order("published_at", { ascending: false });
 
@@ -113,7 +113,7 @@ export default async function BlogPage({
                 {/* Cover */}
                 <div className="relative min-h-[240px] overflow-hidden bg-[#052e16] md:w-[45%]">
                   {featured.cover_image && (
-                    <Image src={featured.cover_image} alt={featured.title} fill
+                    <Image src={featured.cover_image} alt={featured.cover_image_alt || featured.title} fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="45vw" />
                   )}
@@ -181,7 +181,7 @@ export default async function BlogPage({
                   {/* Cover */}
                   <div className="relative h-48 overflow-hidden bg-[#052e16]">
                     {post.cover_image && (
-                      <Image src={post.cover_image} alt={post.title} fill
+                      <Image src={post.cover_image} alt={post.cover_image_alt || post.title} fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, 33vw" />
                     )}

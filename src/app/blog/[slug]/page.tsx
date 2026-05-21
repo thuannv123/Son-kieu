@@ -24,7 +24,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const { data: post } = await supabaseAdmin
     .from("posts")
-    .select("title,excerpt,author,published_at,cover_image,seo_keywords")
+    .select("title,excerpt,author,published_at,cover_image,cover_image_alt,seo_keywords")
     .eq("slug", slug)
     .eq("is_published", true)
     .maybeSingle();
@@ -33,7 +33,8 @@ export async function generateMetadata({
 
   const description = post.excerpt?.slice(0, 155) ?? post.title;
   const url         = `${SITE}/blog/${slug}`;
-  const image       = post.cover_image ? [{ url: post.cover_image }] : [{ url: "/opengraph-image" }];
+  const imageAlt    = post.cover_image_alt || post.title;
+  const image       = post.cover_image ? [{ url: post.cover_image, alt: imageAlt }] : [{ url: "/opengraph-image", alt: post.title }];
 
   return {
     title:       post.title,
@@ -68,7 +69,7 @@ export default async function BlogPostPage({
 
   const { data: related } = await supabaseAdmin
     .from("posts")
-    .select("id,title,slug,excerpt,category,author,published_at,cover_image")
+    .select("id,title,slug,excerpt,category,author,published_at,cover_image,cover_image_alt")
     .eq("is_published", true)
     .eq("category", post.category)
     .neq("id", post.id)
@@ -101,7 +102,7 @@ export default async function BlogPostPage({
         post.cover_image ? "h-[60vh] min-h-[340px]" : "h-48"
       } bg-[#052e16]`}>
         {post.cover_image && (
-          <Image src={post.cover_image} alt={post.title} fill
+          <Image src={post.cover_image} alt={post.cover_image_alt || post.title} fill
             className="object-cover" sizes="100vw" priority
             unoptimized={post.cover_image.startsWith("http")} />
         )}
@@ -188,7 +189,7 @@ export default async function BlogPostPage({
                              hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
                   <div className="relative h-32 overflow-hidden bg-[#052e16]">
                     {r.cover_image && (
-                      <Image src={r.cover_image} alt={r.title} fill
+                      <Image src={r.cover_image} alt={r.cover_image_alt || r.title} fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="33vw" />
                     )}
