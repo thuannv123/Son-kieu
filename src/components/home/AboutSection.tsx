@@ -144,19 +144,27 @@ export default function AboutSection({ imageUrl }: { imageUrl?: string }) {
         </div>
 
         {/* Pillars grid */}
-        <div className="mt-28 grid gap-px bg-gray-100 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-24 border-t border-gray-200">
           {PILLARS.map(({ num, label, desc }) => (
             <div key={num}
-              className="group bg-white p-8 transition-colors hover:bg-[#052e16]/[0.02]">
-              <p className="mb-5 font-display text-[3.5rem] font-normal italic leading-none
-                             tracking-[0.04em] text-gray-100 transition-colors
-                             group-hover:text-[#22c55e]/25">
+              className="group flex items-baseline gap-5 border-b border-gray-200 py-8
+                         transition-colors hover:pl-2 md:gap-10 md:py-10">
+              <p className="w-12 shrink-0 font-display text-[2.4rem] font-normal italic
+                             leading-none tracking-[0.04em] text-[#052e16]/25
+                             transition-colors group-hover:text-[#22c55e] md:w-24 md:text-[3rem]">
                 {num}
               </p>
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-900">
-                {label}
-              </p>
-              <p className="mt-2.5 text-[13px] leading-relaxed text-gray-400">{desc}</p>
+              <div className="flex-1 md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]
+                              md:items-baseline md:gap-10">
+                <h3 className="font-display text-[1.6rem] font-normal italic leading-tight
+                               tracking-[0.03em] text-gray-950 transition-colors
+                               group-hover:text-[#16a34a] md:text-[1.95rem]">
+                  {label}
+                </h3>
+                <p className="mt-2.5 text-[14px] leading-[1.95] text-gray-500 md:mt-0">
+                  {desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>

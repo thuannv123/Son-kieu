@@ -58,64 +58,62 @@ export default function WhyUs() {
   return (
     <section className="bg-white py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <div className="grid gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
 
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.34em] text-[#22c55e]">
-            Tại Sao Chọn Chúng Tôi
-          </p>
-          <h2 className="font-display text-[clamp(2.4rem,5vw,4.2rem)] font-normal italic
-                         leading-[1.06] tracking-[0.04em] text-gray-950">
-            Trải Nghiệm Đáng Tin Cậy
-          </h2>
-          <div className="my-7 flex items-center justify-center gap-4">
-            <span className="block h-px w-14 bg-gray-200" />
-            <span className="text-[#22c55e] opacity-60">✦</span>
-            <span className="block h-px w-14 bg-gray-200" />
-          </div>
-          <p className="mx-auto max-w-lg text-[15px] font-light leading-[2] text-gray-400">
-            Mỗi chuyến đi là một kỷ niệm đáng nhớ — chúng tôi đảm bảo an toàn,
-            chất lượng và sự hài lòng tuyệt đối.
-          </p>
-        </div>
-
-        {/* Feature cards */}
-        <div className="grid gap-px bg-gray-100 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURES.map(({ title, desc, icon }) => (
-            <div key={title}
-              className="group relative flex flex-col bg-white p-8
-                         transition-colors hover:bg-[#052e16]/[0.02]">
-
-              {/* Icon */}
-              <div className="mb-7 flex h-12 w-12 items-center justify-center
-                              border border-gray-200 text-[#052e16]/60
-                              transition-colors group-hover:border-[#22c55e] group-hover:text-[#22c55e]">
-                {icon}
-              </div>
-
-              <h3 className="font-display text-[19px] font-normal italic leading-snug
-                             tracking-[0.03em] text-gray-950
-                             transition-colors group-hover:text-[#16a34a]">
-                {title}
-              </h3>
-              <p className="mt-3 text-[13px] leading-relaxed text-gray-400">{desc}</p>
+          {/* ── Left — heading + intro + trust ── */}
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.34em] text-[#22c55e]">
+              Tại Sao Chọn Chúng Tôi
+            </p>
+            <h2 className="font-display text-[clamp(2.2rem,4vw,3.3rem)] font-normal italic
+                           leading-[1.08] tracking-[0.04em] text-gray-950">
+              Trải Nghiệm<br />Đáng Tin Cậy
+            </h2>
+            <div className="my-7 flex items-center gap-4">
+              <span className="block h-px w-12 bg-gray-200" />
+              <span className="text-[#22c55e] opacity-60">✦</span>
             </div>
-          ))}
-        </div>
+            <p className="max-w-sm text-[15px] font-light leading-[2] text-gray-500">
+              Mỗi chuyến đi là một kỷ niệm đáng nhớ — chúng tôi đảm bảo an toàn,
+              chất lượng và sự hài lòng tuyệt đối.
+            </p>
 
-        {/* Trust badges */}
-        <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3
-                        border-t border-gray-100 pt-10">
-          {TRUST.map(label => (
-            <span key={label} className="flex items-center gap-2
-                                         text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              {label}
-            </span>
-          ))}
+            {/* Trust badges */}
+            <div className="mt-10 grid max-w-sm grid-cols-2 gap-x-6 gap-y-4
+                            border-t border-gray-100 pt-8">
+              {TRUST.map(label => (
+                <span key={label} className="flex items-center gap-2
+                                             text-[11px] font-bold uppercase tracking-[0.14em] text-gray-500">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                    stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Right — feature list ── */}
+          <div className="border-t border-gray-200">
+            {FEATURES.map(({ title, desc, icon }) => (
+              <div key={title}
+                className="group flex items-start gap-5 border-b border-gray-200 py-7
+                           transition-all duration-300 hover:pl-2 md:py-8">
+                <span className="mt-1 shrink-0 text-[#16a34a] transition-colors group-hover:text-[#22c55e]">
+                  {icon}
+                </span>
+                <div>
+                  <h3 className="font-display text-[1.35rem] font-normal italic leading-tight
+                                 tracking-[0.02em] text-gray-950 transition-colors
+                                 group-hover:text-[#16a34a]">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-[14px] leading-[1.9] text-gray-500">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
