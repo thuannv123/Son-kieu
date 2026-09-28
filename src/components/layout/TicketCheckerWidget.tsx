@@ -304,7 +304,7 @@ export default function TicketCheckerWidget() {
           <div className="border-t border-gray-100 px-5 py-3 text-center">
             <p className="text-[11px] text-gray-400">
               Hỗ trợ:{" "}
-              <a href="tel:+84857086588" className="font-semibold text-emerald-600">0857 086 588</a>
+              <a href="tel:+84374245367" className="font-semibold text-emerald-600">037 424 5367</a>
             </p>
           </div>
         )}

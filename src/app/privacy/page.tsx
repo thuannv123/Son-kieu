@@ -253,9 +253,9 @@ export default function PrivacyPage() {
                 ))}
               </div>
               <div className="flex flex-wrap gap-3">
-                <a href="tel:0857086588"
+                <a href="tel:0374245367"
                   className="inline-flex items-center gap-2 border border-white/20 bg-white/15 px-4 py-2 text-[13px] font-semibold hover:bg-white/25 transition">
-                  📞 0857 086 588
+                  📞 037 424 5367
                 </a>
               </div>
             </section>

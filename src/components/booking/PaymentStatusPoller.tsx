@@ -144,8 +144,8 @@ export default function PaymentStatusPoller({ bookingRef }: Props) {
           Đã chuyển khoản nhưng chờ lâu?{" "}
           <span className="font-semibold text-gray-700">
             Lưu mã <span className="font-mono text-amber-700">{bookingRef}</span> và liên hệ{" "}
-            <a href="tel:+84857086588" className="font-bold text-emerald-700 underline">
-              0857 086 588
+            <a href="tel:+84374245367" className="font-bold text-emerald-700 underline">
+              037 424 5367
             </a>{" "}
             để được hỗ trợ.
           </span>

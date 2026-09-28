@@ -63,7 +63,7 @@ const TRANSPORT = [
     tips: [
       "Xe chạy lúc 6:00 và 11:00 từ bến xe Đông Hà",
       "Giá vé ~40.000đ/lượt",
-      "Gọi 0857 086 588 để được đón từ bến xe",
+      "Gọi 037 424 5367 để được đón từ bến xe",
       "Hỏi tài xế bến 'Khu Du Lịch Sơn Kiều'",
     ],
   },
@@ -97,7 +97,7 @@ export default function DirectionsPage() {
         eyebrow="Xã Trường Sơn · Quảng Trị"
         subtitle="Lộ trình chi tiết từ các thành phố lớn đến Khu Du Lịch Sinh Thái Sơn Kiều."
         crumbs={[{ label: "Đường Đến" }]}
-        cta={{ label: "Gọi hỗ trợ: 0857 086 588", href: "tel:0857086588" }}
+        cta={{ label: "Gọi hỗ trợ: 037 424 5367", href: "tel:0374245367" }}
         size="compact"
       />
 
@@ -290,12 +290,12 @@ export default function DirectionsPage() {
                 <p className="mb-4 text-[13px] leading-relaxed text-gray-500">
                   Đội ngũ chúng tôi sẵn sàng hướng dẫn đường và đón khách tại các điểm lớn gần khu.
                 </p>
-                <a href="tel:0857086588"
+                <a href="tel:0374245367"
                   className="flex items-center gap-3 border border-emerald-100 bg-white px-4 py-3
                              text-[14px] font-semibold text-gray-900 shadow-sm transition hover:bg-emerald-50"
                   style={{ borderRadius: 0 }}>
                   <span className="text-emerald-600">📱</span>
-                  0857 086 588
+                  037 424 5367
                 </a>
               </div>
 
@@ -318,7 +318,7 @@ export default function DirectionsPage() {
             <span className="font-bold">⚠️ Lưu ý:</span>{" "}
             Một số ứng dụng bản đồ chưa cập nhật chính xác địa điểm Sơn Kiều.
             Nếu gặp khó khăn, hãy gọi trực tiếp{" "}
-            <a href="tel:0857086588" className="font-bold underline">0857 086 588</a> để được hỗ trợ.
+            <a href="tel:0374245367" className="font-bold underline">037 424 5367</a> để được hỗ trợ.
           </p>
         </div>
       </div>

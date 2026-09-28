@@ -251,7 +251,7 @@ export default async function PricingPage() {
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <p className="text-center text-[13px] text-amber-700">
               ⚠️ Không thể tải dữ liệu mới nhất — đang hiển thị bảng giá tham khảo. Gọi{" "}
-              <a href="tel:0857086588" className="font-bold underline">0857 086 588</a> để xác nhận.
+              <a href="tel:0374245367" className="font-bold underline">037 424 5367</a> để xác nhận.
             </p>
           </div>
         </div>
@@ -292,7 +292,7 @@ export default async function PricingPage() {
               <p className="mt-4 text-[16px] font-bold text-gray-700">Chưa có hoạt động nào.</p>
               <p className="mt-1 text-[14px] text-gray-400">
                 Vui lòng gọi{" "}
-                <a href="tel:0857086588" className="font-bold text-emerald-600">0857 086 588</a>{" "}
+                <a href="tel:0374245367" className="font-bold text-emerald-600">037 424 5367</a>{" "}
                 để hỏi thêm.
               </p>
             </div>
@@ -351,7 +351,7 @@ export default async function PricingPage() {
           </div>
           <p className="mt-4 text-center text-[12px] text-gray-400">
             * Combo chưa có trong hệ thống đặt vé. Gọi{" "}
-            <a href="tel:0857086588" className="font-medium text-emerald-600">0857 086 588</a>{" "}
+            <a href="tel:0374245367" className="font-medium text-emerald-600">037 424 5367</a>{" "}
             để đặt combo trực tiếp.
           </p>
         </div>
@@ -392,11 +392,11 @@ export default async function PricingPage() {
               style={{ borderRadius: 0 }}>
               Đặt Vé Ngay
             </Link>
-            <a href="tel:0857086588"
+            <a href="tel:0374245367"
               className="border border-white/20 bg-white/[0.06] px-8 py-3.5
                          text-[14px] font-bold text-white transition hover:bg-white/[0.12]"
               style={{ borderRadius: 0 }}>
-              Gọi 0857 086 588
+              Gọi 037 424 5367
             </a>
           </div>
         </div>

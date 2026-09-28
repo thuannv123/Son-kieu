@@ -32,9 +32,9 @@ const CONTACT_CARDS = [
     gradient: "from-blue-500 to-indigo-600",
     glow: "rgba(99,102,241,0.35)",
     label: "Điện Thoại",
-    value: " 0857 086 588",
+    value: " 037 424 5367",
     sub: "Hỗ trợ 08:00 – 17:00 hàng ngày",
-    href: "tel:0857086588",
+    href: "tel:0374245367",
   },
   {
     icon: (
@@ -109,7 +109,7 @@ export default function ContactPage() {
         subtitle="Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy để lại tin nhắn — phản hồi trong vòng 24 giờ."
         crumbs={[{ label: "Liên Hệ" }]}
         size="compact"
-        cta={{ label: "0857 086 588", href: "tel:0857086588" }}
+        cta={{ label: "037 424 5367", href: "tel:0374245367" }}
       />
 
       {/* ── Contact info cards ── */}

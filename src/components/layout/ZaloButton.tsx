@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function ZaloButton() {
   return (
     <Link
-      href="https://zalo.me/0857086588"
+      href="https://zalo.me/0374245367"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat Zalo"

@@ -162,7 +162,7 @@ function buildHtml(d: NotifyBody): string {
         </p>
       </div>
       <p style="margin:0;color:#9ca3af;font-size:11px;text-align:center;">
-        © Khu Du Lịch Sinh Thái Sơn Kiều · Trường Sơn, Quảng Ninh, tỉnh Quảng Trị · 0857 086 588
+        © Khu Du Lịch Sinh Thái Sơn Kiều · Trường Sơn, Quảng Ninh, tỉnh Quảng Trị · 037 424 5367
       </p>
     </div>
   </div>

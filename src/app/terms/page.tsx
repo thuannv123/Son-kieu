@@ -122,7 +122,7 @@ export default function TermsPage() {
                 </ul>
                 <Note color="emerald" icon="🎫">
                   Vé đoàn từ <strong>10 người trở lên</strong> được hưởng ưu đãi đặc biệt. Liên hệ hotline{" "}
-                  <a href="tel:0857086588" className="underline font-semibold">0857 086 588</a> để được báo giá nhóm.
+                  <a href="tel:0374245367" className="underline font-semibold">037 424 5367</a> để được báo giá nhóm.
                 </Note>
               </div>
             </section>
@@ -179,7 +179,7 @@ export default function TermsPage() {
                   </div>
                   <p className="text-[13px] font-semibold text-amber-800">
                     Liên hệ:{" "}
-                    <a href="tel:0857086588" className="underline">0857 086 588</a>
+                    <a href="tel:0374245367" className="underline">037 424 5367</a>
                   </p>
                 </div>
 
@@ -272,9 +272,9 @@ export default function TermsPage() {
               <p className="text-[13px] font-bold text-emerald-200 mb-1">Câu hỏi về điều khoản?</p>
               <h3 className="text-[18px] font-black mb-3">Liên hệ với chúng tôi</h3>
               <div className="flex flex-wrap gap-3">
-                <a href="tel:0857086588"
+                <a href="tel:0374245367"
                   className="inline-flex items-center gap-2 border border-white/20 bg-white/15 px-4 py-2 text-[13px] font-semibold hover:bg-white/25 transition">
-                  📞 0857 086 588
+                  📞 037 424 5367
                 </a>
                 <Link href="/contact"
                   className="inline-flex items-center gap-2 border border-white/20 bg-white/15 px-4 py-2 text-[13px] font-semibold hover:bg-white/25 transition">

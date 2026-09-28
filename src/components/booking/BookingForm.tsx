@@ -775,7 +775,7 @@ export default function BookingForm({ activities, categoryMeta, preselectedActiv
                     </div>
                   </div>
                   <p className="text-[11px] text-amber-700">
-                    Liên hệ: <a href="tel:0857086588" className="font-semibold underline">0857 086 588</a>
+                    Liên hệ: <a href="tel:0374245367" className="font-semibold underline">037 424 5367</a>
                   </p>
                 </div>
 

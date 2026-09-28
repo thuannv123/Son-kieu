@@ -63,9 +63,9 @@ export default function Navbar() {
         {/* Top micro-bar */}
         <div className="hidden border-b border-white/8 md:block">
           <div className="ds-container-wide flex h-8 items-center justify-end gap-6">
-            <a href="tel:+84857086588"
+            <a href="tel:+84374245367"
                className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/45 transition hover:text-white/80">
-              +84 857 086 588
+              +84 374 245 367
             </a>
             <span className="text-white/20">|</span>
             <Link href="/contact"

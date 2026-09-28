@@ -91,7 +91,7 @@ const homeJsonLd = {
       "description": "Khu du lịch sinh thái & homestay tại Trường Sơn, Quảng Ninh, tỉnh Quảng Trị — hang động triệu năm tuổi, hồ bơi thiên nhiên ngọc bích, rừng nguyên sinh.",
       "url":         SITE,
       "image":       SOCIAL_IMAGE,
-      "telephone":   "+84944911896",
+      "telephone":   "+84374245367",
       "address": {
         "@type":           "PostalAddress",
         "streetAddress":   "Trường Sơn, Quảng Ninh",
@@ -111,7 +111,7 @@ const homeJsonLd = {
       "name":      "Khu Du Lịch Sinh Thái Sơn Kiều",
       "url":       SITE,
       "logo":      `${SITE}/icon.png`,
-      "telephone": "+84944911896",
+      "telephone": "+84374245367",
       "address": {
         "@type":           "PostalAddress",
         "streetAddress":   "Trường Sơn, Quảng Ninh",
